@@ -1,4 +1,4 @@
-package com.mine.board;
+package board;
 
 public class board {
 

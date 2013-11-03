@@ -6,7 +6,14 @@
 
     <groupId>Mine_Sweeper_Alek</groupId>
     <artifactId>Mine_Sweeper_Alek</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.1-BETA</version>
 
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+		</dependency>
+	</dependencies>
     
 </project>

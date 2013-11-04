@@ -23,9 +23,13 @@ public class BoardTest extends TestCase {
 		assertTrue(board.getposition(pos).isFlag());
 	}
 	
-	public void testwin() {
+	public void testwincase1() {
 		board.getposition(pos).setOpen(true);
-		
+		assertTrue(board.isWin());
+	}
+	
+	public void testwincase2() {
+		board.getposition(pos).setBoom(true);
 		assertTrue(board.isWin());
 	}
 }

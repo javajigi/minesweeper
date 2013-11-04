@@ -5,17 +5,7 @@ public class GameMaster {
 		WIN, GAMING, LOSE
 	}
 
-	private static GameStatus gameStatus;
-
-	GameMaster() {
-	}
-
-	static void setGameStatus(GameStatus gameStatus) {
-		GameMaster.gameStatus = gameStatus;
-	}
-
-	static GameStatus getGameStatus() {
-		return gameStatus;
+	public GameMaster() {
 	}
 
 	public static GameStatus checkStatus(BoardController board) {
@@ -39,6 +29,18 @@ public class GameMaster {
 
 		else
 			return GameStatus.GAMING;
+	}
+
+	public static void nowGaming(BoardController board) {
+		while (checkStatus(board).equals(GameStatus.GAMING)) {
+
+		}
+
+		if (checkStatus(board).equals(GameStatus.LOSE)) {
+			board.openAllMines();
+		}
+		else
+			;
 	}
 
 

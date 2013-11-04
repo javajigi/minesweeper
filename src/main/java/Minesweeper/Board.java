@@ -45,17 +45,40 @@ public class Board implements BoardController {
 		return Blocks;
 	}
 
-	private ArrayList<Block> getAllNearBlocks(int xAxis, int yAxis) throws NullPointerException {
+	private boolean isValid(int xAxis, int yAxis) {
+		if (xAxis < 0 || xAxis >= xNum)
+			return false;
+		if (yAxis < 0 || yAxis >= yNum)
+			return false;
+		return true;
+	}
+
+	private ArrayList<Block> getAllNearBlocks(int xAxis, int yAxis) {
 		ArrayList<Block> Blocks = new ArrayList<Block>();
 
-		Blocks.add(XLineBlocks.get(xAxis).get(yAxis-1));
-		Blocks.add(XLineBlocks.get(xAxis).get(yAxis));
-		Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis));
-		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis));
-		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-1));
-		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-2));
-		Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis-2));
-		Blocks.add(XLineBlocks.get(xAxis).get(yAxis-2));
+		if (isValid(xAxis, yAxis-1))
+			Blocks.add(XLineBlocks.get(xAxis).get(yAxis-1));
+
+		if (isValid(xAxis, yAxis))
+			Blocks.add(XLineBlocks.get(xAxis).get(yAxis));
+
+		if (isValid(xAxis-1, yAxis))
+			Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis));
+
+		if (isValid(xAxis-2, yAxis))
+			Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis));
+
+		if (isValid(xAxis-2, yAxis-1))
+			Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-1));
+
+		if (isValid(xAxis-2, yAxis-2))
+			Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-2));
+
+		if (isValid(xAxis-1, yAxis-2))
+			Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis-2));
+
+		if (isValid(xAxis, yAxis-2))
+			Blocks.add(XLineBlocks.get(xAxis).get(yAxis-2));
 
 		return Blocks;
 	}
@@ -79,6 +102,15 @@ public class Board implements BoardController {
 		this.NumofInvisibleBlocks = NumofInvisibleBlocks;
 		this.NumofFlagedBlocks = NumofFlagedBlocks;
 		this.bomb = bomb;
+	}
+
+	@Override
+	public void openAllMines() {
+		ArrayList<Block> blocks = getAllBlocks();
+		for (Block block : blocks) {
+			if (block.isMine())
+				block.setShow(true);
+		}
 	}
 
 	@Override
@@ -132,6 +164,11 @@ public class Board implements BoardController {
 	@Override
 	public void setShow(int xAxis, int yAxis, boolean show) {
 		XLineBlocks.get(xAxis-1).get(yAxis-1).setShow(show);
+	}
+
+	@Override
+	public Block getBlock(int xAxis, int yAxis) {
+		return XLineBlocks.get(xAxis-1).get(yAxis-1);
 	}
 
 	@Override

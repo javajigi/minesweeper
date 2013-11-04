@@ -6,6 +6,8 @@ public interface BoardController {
 	void setFlag (int xAxis, int yAxis, boolean flag);
 	void setShow (int xAxis, int yAxis, boolean show);
 
+	Block getBlock (int xAxis, int yAxis);
+
 	int getNumofInvisibleBlocks();
 	int getNumofFlagedBlocks();
 	int getNumofMines();
@@ -16,4 +18,5 @@ public interface BoardController {
 	boolean isBomb();
 
 	void calcBoard();
+	void openAllMines();
 }

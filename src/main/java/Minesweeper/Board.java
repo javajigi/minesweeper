@@ -21,12 +21,19 @@ public class Board implements BoardController {
 		initialize(xNum, yNum);
 	}
 
+	public static Board createBoard(int xNum, int yNum, int NumofMines) {
+		return new Board(xNum, yNum, NumofMines);
+	}
+
 	private void initialize(int xNum, int yNum) {
-		ArrayList<Block> YLineBlocks = new ArrayList<Block>();
-		for (int i = 0 ; i < yNum ; i++)
-			YLineBlocks.add(new Block(false));
-		for (int j = 0 ; j < xNum ; j++)
+		for (int j = 0 ; j < xNum ; j++) {
+			ArrayList<Block> YLineBlocks = new ArrayList<Block>();
+			for (int i = 0 ; i < yNum ; i++) {
+
+				YLineBlocks.add(new Block(false));
+			}
 			XLineBlocks.add(YLineBlocks);
+		}
 	}
 
 	private ArrayList<Block> getAllBlocks() {
@@ -38,14 +45,30 @@ public class Board implements BoardController {
 		return Blocks;
 	}
 
+	private ArrayList<Block> getAllNearBlocks(int xAxis, int yAxis) throws NullPointerException {
+		ArrayList<Block> Blocks = new ArrayList<Block>();
+
+		Blocks.add(XLineBlocks.get(xAxis).get(yAxis-1));
+		Blocks.add(XLineBlocks.get(xAxis).get(yAxis));
+		Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis));
+		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis));
+		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-1));
+		Blocks.add(XLineBlocks.get(xAxis-2).get(yAxis-2));
+		Blocks.add(XLineBlocks.get(xAxis-1).get(yAxis-2));
+		Blocks.add(XLineBlocks.get(xAxis).get(yAxis-2));
+
+		return Blocks;
+	}
+
 	@Override
 	public void calcBoard() {
 		int NumofInvisibleBlocks = 0;
 		int NumofFlagedBlocks = 0;
 		boolean bomb = false;
+
 		for (int i = 0 ; i < xNum * yNum ; i++) {
 			if (!(getAllBlocks().get(i).isShow()))
-				NumofInvisibleBlocks = NumofFlagedBlocks + 1;
+				NumofInvisibleBlocks = NumofInvisibleBlocks + 1;
 			if (getAllBlocks().get(i).isFlag())
 				NumofFlagedBlocks = NumofFlagedBlocks + 1;
 			if (getAllBlocks().get(i).isBomb())
@@ -56,6 +79,19 @@ public class Board implements BoardController {
 		this.NumofInvisibleBlocks = NumofInvisibleBlocks;
 		this.NumofFlagedBlocks = NumofFlagedBlocks;
 		this.bomb = bomb;
+	}
+
+	@Override
+	public int getNumofNearMines(int xAxis, int yAxis) {
+		int NumofNearMines = 0;
+
+		ArrayList<Block> Blocks = getAllNearBlocks(xAxis, yAxis);
+
+		for (Block block : Blocks) {
+			if (block.isMine())
+				NumofNearMines = NumofNearMines + 1;
+		}
+		return NumofNearMines;
 	}
 
 	@Override
@@ -84,18 +120,18 @@ public class Board implements BoardController {
 	}
 
 	@Override
-	public void setMine(int xNum, int yNum, boolean mine) {
-		XLineBlocks.get(xNum-1).get(yNum-1).setMine(mine);
+	public void setMine(int xAxis, int yAxis, boolean mine) {
+		((XLineBlocks.get(xAxis-1)).get(yAxis-1)).setMine(mine);
 	}
 
 	@Override
-	public void setFlag(int xNum, int yNum, boolean flag) {
-		XLineBlocks.get(xNum-1).get(yNum-1).setFlag(flag);
+	public void setFlag(int xAxis, int yAxis, boolean flag) {
+		XLineBlocks.get(xAxis-1).get(yAxis-1).setFlag(flag);
 	}
 
 	@Override
-	public void setShow(int xNum, int yNum, boolean show) {
-		XLineBlocks.get(xNum-1).get(yNum-1).setShow(show);
+	public void setShow(int xAxis, int yAxis, boolean show) {
+		XLineBlocks.get(xAxis-1).get(yAxis-1).setShow(show);
 	}
 
 	@Override
@@ -105,9 +141,8 @@ public class Board implements BoardController {
 
 		Board board = (Board) o;
 
-		if (!XLineBlocks.equals(board.XLineBlocks)) return false;
+		return XLineBlocks.equals(board.XLineBlocks);
 
-		return true;
 	}
 
 	@Override

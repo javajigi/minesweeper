@@ -36,9 +36,6 @@ public class Block {
 	}
 
 	public boolean isBomb() {
-		if (isShow()==true && isMine()==true)
-			return true;
-		else
-			return false;
+		return isShow() && isMine();
 	}
 }

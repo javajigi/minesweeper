@@ -2,14 +2,10 @@ package Minesweeper;
 
 public class GameMaster {
 	public static enum GameStatus {
-		WIN, GAMING, LOSE;
+		WIN, GAMING, LOSE
 	}
 
 	private static GameStatus gameStatus;
-	private static int NumofMines = 0;
-	private static int NumofEntireMines = 0;
-	private static int NumofInvisibleBlocks = 0;
-	private static int NumofBlocks = 0;
 
 	GameMaster() {
 	}
@@ -25,20 +21,20 @@ public class GameMaster {
 	public static GameStatus checkStatus(BoardController board) {
 		board.calcBoard();
 
-		NumofBlocks = board.getNumofBlocks();
-		NumofMines = board.getNumofMines();
-		NumofEntireMines = board.getNumofMines() - board.getNumofFlagedBlocks();
-		NumofInvisibleBlocks = board.getNumofInvisibleBlocks();
+		int numofBlocks = board.getNumofBlocks();
+		int numofMines = board.getNumofMines();
+		int numofEntireMines = board.getNumofMines() - board.getNumofFlagedBlocks();
+		int numofInvisibleBlocks = board.getNumofInvisibleBlocks();
 
-		System.out.println("NumofBlocks : " + NumofBlocks);
-		System.out.println("NumofMines : " + NumofMines);
-		System.out.println("NumofEntireMines : " + NumofEntireMines);
-		System.out.println("NumofInvisibleBlocks : " + NumofInvisibleBlocks);
+		System.out.println("NumofBlocks : " + numofBlocks);
+		System.out.println("NumofMines : " + numofMines);
+		System.out.println("NumofEntireMines : " + numofEntireMines);
+		System.out.println("NumofInvisibleBlocks : " + numofInvisibleBlocks);
 
-		if (board.isBomb()==true)
+		if (board.isBomb())
 			return GameStatus.LOSE;
 
-		else if (NumofInvisibleBlocks==NumofMines)
+		else if (numofInvisibleBlocks == numofMines)
 			return GameStatus.WIN;
 
 		else

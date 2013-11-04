@@ -9,7 +9,7 @@ public class InputCoordinateTest extends TestCase{
 		InputCoordinate input = new InputCoordinate();
 		Position pos = new Position();
 		Position testpos =  new Position();
-		testpos = input.getCoordinate();
+		testpos = input.getCoordinatebyKeyboard();
 		pos.x=0;
 		pos.y=0;
 		assertEquals(pos.x, testpos.x);

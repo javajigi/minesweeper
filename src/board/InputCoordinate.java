@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputCoordinate {
 	
-	public Position getCoordinate() {
+	public Position getCoordinatebyKeyboard() {
 		Position pos = new Position();
 		Scanner keyboard = new Scanner(System.in);
 		System.out.print("input coordinate(x y) : ");
@@ -13,6 +13,5 @@ public class InputCoordinate {
 		
 		return pos;
 	}
-	
 	
 }

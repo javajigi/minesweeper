@@ -8,7 +8,7 @@ public class Main {
 
 		// X축, Y축, Mine 갯수 받고 Board create, Mine set
 
-		Board gameBoard = new Board(1, 1, 1);
+//		Board gameBoard = new Board(1, 1, 1);
 
 //		while (gameBoard.checkStatus(gameBoard)==GameStatus.GAMING)
 //		{

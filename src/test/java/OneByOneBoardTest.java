@@ -25,7 +25,7 @@ public class OneByOneBoardTest {
 	@Test
 	public void FlagTest() throws Exception {
 		System.out.println("======= Testing FlagTest() =======");
-		Board OneByOneBoard = new Board(1, 1, 0);
+		Board OneByOneBoard = Board.createBoard(1, 1, 0);
 
 		OneByOneBoard.calcBoard();
 		assertEquals(OneByOneBoard.getNumofFlagedBlocks(), 0);

@@ -5,10 +5,14 @@ public class Block {
 	private boolean mine;
 	private boolean flag;
 
-	Block(boolean mine) {
+	private int xAxis, yAxis;
+
+	Block(int xAxis, int yAxis) {
 		this.flag = false;
 		this.show = false;
-		this.mine = mine;
+		this.mine = false;
+		this.xAxis = xAxis + 1;
+		this.yAxis = yAxis + 1;
 	}
 
 	public boolean isShow() {
@@ -37,5 +41,13 @@ public class Block {
 
 	public boolean isBomb() {
 		return isShow() && isMine();
+	}
+
+	public int getxAxis() {
+		return xAxis;
+	}
+
+	public int getyAxis() {
+		return yAxis;
 	}
 }

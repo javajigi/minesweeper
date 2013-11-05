@@ -1,6 +1,7 @@
 package Minesweeper;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Board implements BoardController {
 	private ArrayList<ArrayList<Block>> XLineBlocks = new ArrayList<ArrayList<Block>>();
@@ -14,25 +15,41 @@ public class Board implements BoardController {
 		TODO 아직 NumofMines 가 구현되지 않음.
 	 */
 
-	public Board(int xNum, int yNum, int NumofMines) {
+	private Board(int xNum, int yNum, int NumofMines) {
 		this.xNum = xNum;
 		this.yNum = yNum;
 		this.NumofMines = NumofMines;
-		initialize(xNum, yNum);
+		initialize(xNum, yNum, NumofMines);
 	}
 
 	public static Board createBoard(int xNum, int yNum, int NumofMines) {
 		return new Board(xNum, yNum, NumofMines);
 	}
 
-	private void initialize(int xNum, int yNum) {
-		for (int j = 0 ; j < xNum ; j++) {
+	private void initialize(int xNum, int yNum, int NumofMines) {
+		for (int i = 0 ; i < xNum ; i++) {
 			ArrayList<Block> YLineBlocks = new ArrayList<Block>();
-			for (int i = 0 ; i < yNum ; i++) {
+			for (int j = 0 ; j < yNum ; j++) {
 
-				YLineBlocks.add(new Block(false));
+				YLineBlocks.add(new Block(i, j));
 			}
 			XLineBlocks.add(YLineBlocks);
+		}
+		setRandomMines(NumofMines);
+	}
+
+	private void setRandomMines(int Mines) {
+		while(Mines!=0) {
+			Random random = new Random();
+			int xAxis = random.nextInt(xNum) + 1;
+			int yAxis = random.nextInt(yNum) + 1;
+
+			if (getBlock(xAxis, yAxis).isMine())
+				;
+			else {
+				setMine(xAxis, yAxis, true);
+				Mines = Mines - 1;
+			}
 		}
 	}
 
@@ -147,6 +164,16 @@ public class Board implements BoardController {
 	}
 
 	@Override
+	public int getXNum() {
+		return xNum;
+	}
+
+	@Override
+	public int getYNum() {
+		return yNum;
+	}
+
+	@Override
 	public boolean isBomb() {
 		return bomb;
 	}
@@ -167,25 +194,27 @@ public class Board implements BoardController {
 	}
 
 	@Override
+	public void openBlock(int xAxis, int yAxis) {
+		if (!getBlock(xAxis, yAxis).isShow()) {
+			getBlock(xAxis, yAxis).setShow(true);
+			if (getNumofNearMines(xAxis, yAxis)==0) {
+				for (Block block : getAllNearBlocks(xAxis, yAxis)) {
+					openBlock(block);
+				}
+			}
+		}
+		else
+			System.out.println("This Block is already Open!");
+	}
+
+	private void openBlock(Block block) {
+		int xAxis = block.getxAxis();
+		int yAxis = block.getyAxis();
+		openBlock(xAxis, yAxis);
+	}
+
+	@Override
 	public Block getBlock(int xAxis, int yAxis) {
 		return XLineBlocks.get(xAxis-1).get(yAxis-1);
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (!(o instanceof Board)) return false;
-
-		Board board = (Board) o;
-
-		return XLineBlocks.equals(board.XLineBlocks);
-
-	}
-
-	@Override
-	public int hashCode() {
-		return XLineBlocks.hashCode();
-	}
-
-
 }

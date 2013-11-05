@@ -8,7 +8,7 @@ public class TwoByTwoBoardTest {
 	@Test
 	public void MineBombLoseTest() throws Exception {
 		System.out.println("======= Testing MineBombLoseTest() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 1);
+		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
 		TwoByTwoBoard.setMine(1, 1, true);
 		TwoByTwoBoard.setShow(1, 1, true);
 		TwoByTwoBoard.calcBoard();
@@ -18,7 +18,7 @@ public class TwoByTwoBoardTest {
 	@Test
 	public void CheckNearMineONETest() throws Exception {
 		System.out.println("======= Testing CheckNearMineONETest() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 1);
+		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
 		TwoByTwoBoard.setMine(1, 1, true);
 		assertEquals(TwoByTwoBoard.getNumofNearMines(1, 2), 1);
 	}
@@ -26,7 +26,7 @@ public class TwoByTwoBoardTest {
 	@Test
 	public void CheckNearMineTWOTest() throws Exception {
 		System.out.println("======= Testing CheckNearMineTWOTest() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 2);
+		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
 		TwoByTwoBoard.setMine(1, 1, true);
 		TwoByTwoBoard.setMine(1, 2, true);
 		assertEquals(TwoByTwoBoard.getNumofNearMines(2, 1), 2);
@@ -35,7 +35,7 @@ public class TwoByTwoBoardTest {
 	@Test
 	public void CheckNearMineTHREETest() throws Exception {
 		System.out.println("======= Testing CheckNearMineTHREETest() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 3);
+		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
 		TwoByTwoBoard.setMine(1, 1, true);
 		TwoByTwoBoard.setMine(1, 2, true);
 		TwoByTwoBoard.setMine(2, 1, true);
@@ -45,7 +45,7 @@ public class TwoByTwoBoardTest {
 	@Test
 	public void CheckIfYouLoseOpenAllMines() throws Exception {
 		System.out.println("======= Testing CheckIfYouLoseOpenAllMines() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 2);
+		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
 		TwoByTwoBoard.setMine(1, 1, true);
 		TwoByTwoBoard.setMine(1, 2, true);
 		TwoByTwoBoard.setShow(1, 1, true);

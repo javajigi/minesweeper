@@ -7,6 +7,7 @@ public class Grid {
 	private int numberOfMine = 0;
 	
 	private boolean isWin = false;
+	private boolean flag = false;
 
 	public Grid(int row, int col) {
 		this.row = row;
@@ -37,8 +38,16 @@ public class Grid {
 		numberOfMine = 1;
 	}
 
-	public void openSquare(int i, int j) {
+	public void openSquare() {
 		isWin = true;
+	}
+
+	public boolean isFlag() {
+		return flag;
+	}
+
+	public void setFlag() {
+		this.flag = true;
 	}
 
 }

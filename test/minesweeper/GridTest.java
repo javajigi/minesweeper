@@ -35,9 +35,15 @@ public class GridTest {
 	@Test
 	public void noMineWin() throws Exception {
 		assertFalse(grid.isGameOver());
-		grid.openSquare(1, 1);
+		grid.openSquare();
 		assertTrue(grid.isGameOver());
-		
+	}
+	
+	@Test
+	public void isFlag() throws Exception {
+		assertFalse(grid.isFlag());
+		grid.setFlag();
+		assertTrue(grid.isFlag());
 	}
 
 }

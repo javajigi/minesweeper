@@ -5,9 +5,9 @@ week2
 ================
 
 2x2
-# square를 open 하면 지뢰가 아니면 주변지뢰 갯수를 리턴(무조건 1개가 리턴)
-# square를 open 하면 지뢰라면 패배
-# 패배시 grid All open(gridPint())
+- square를 open 하면 지뢰가 아니면 주변지뢰 갯수를 리턴(무조건 1개가 리턴)
+- square를 open 하면 지뢰라면 패배
+- 패배시 grid All open(gridPint())
 
 3x3(선택사항)
-# grid를 open(2,2)한다면 return 0~8까지 
+- grid를 open(2,2)한다면 return 0~8까지

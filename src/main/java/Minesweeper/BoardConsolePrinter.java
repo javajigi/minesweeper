@@ -67,12 +67,16 @@ public class BoardConsolePrinter {
 				middleNode.append("│");
 				for (int j = 0 ; j < xNum ; j++) {
 					String str;
-					if (board.getBlock(i+1, j+1).isMine())
-						str = "*";
-					else if (board.getNumofNearMines(i+1, j+1)==0)
-						str = " ";
-					else
-						str = String.valueOf(board.getNumofNearMines(i+1, j+1));
+						if (board.getBlock(i+1, j+1).isShow()) {
+							if (board.getBlock(i+1, j+1).isMine())
+								str = "*";
+							else if (board.getNumofNearMines(i+1, j+1)==0)
+								str = " ";
+							else
+								str = String.valueOf(board.getNumofNearMines(i+1, j+1));
+						}
+						else
+							str = " ";
 					middleNode.append(" "+str);
 					middleNode.append("│");
 				}

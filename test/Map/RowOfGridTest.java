@@ -4,21 +4,21 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class RowOfMapTest {
+public class RowOfGridTest {
 
-	RowOfMap row;
-	RowOfMap row2;
+	RowOfGrid row;
+	RowOfGrid row2;
 	
 	
 	@Test
 	public void rowOfMap(){
-		row = new RowOfMap(1, 0);
+		row = new RowOfGrid(1);
 		assertTrue(row.isSizeTrue(1));
 	}
 	
 	@Test
 	public void flag(){
-		row = new RowOfMap(1, 0);
+		row = new RowOfGrid(1);
 		assertFalse(row.isFlag(0));
 		row.setFlag(0);
 		assertTrue(row.isFlag(0));
@@ -26,13 +26,15 @@ public class RowOfMapTest {
 	
 	@Test
 	public void isNotGameOver(){
-		row = new RowOfMap(1, 0);
+		row = new RowOfGrid(1);
 		assertTrue(row.isNotGameOver());
-		row.clickSpace(0);
+		row.openSquare(0);
 		assertFalse(row.isNotGameOver());
 
-		row2 = new RowOfMap(1, 1);
+		row2 = new RowOfGrid(1);
 		assertTrue(row2.isNotGameOver());
+		row2.setMine(0);
+		assertFalse(row2.isNotGameOver());
 	}
 	
 }

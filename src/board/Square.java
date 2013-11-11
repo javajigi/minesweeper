@@ -1,16 +1,16 @@
 package board;
 
-public class Point {
+public class Square {
 
 	private boolean open;
-	private boolean boom;
+	private boolean mine;
 	private int hint;
 	private boolean flag;
 	
-	public Point() {
+	public Square() {
 		flag=false;
 		open=false;
-		boom=false;
+		mine=false;
 		hint=0;
 	}
 	
@@ -30,12 +30,12 @@ public class Point {
 		this.open = open;
 	}
 
-	public boolean isBoom() {
-		return boom;
+	public boolean isMine() {
+		return mine;
 	}
 
-	public void setBoom(boolean boom) {
-		this.boom = boom;
+	public void setMine(boolean mine) {
+		this.mine = mine;
 	}
 
 	public int getHint() {

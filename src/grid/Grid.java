@@ -1,4 +1,4 @@
-package board;
+package grid;
 
 import java.util.Random;
 
@@ -7,7 +7,13 @@ public class Grid {
 	private int colSize;
 	private int numberOfMine;
 
-	public boolean[][] grid;
+	public enum square {
+		MINE, NONE, COVERED, OPENED, FLAG
+	}
+	
+	public square[][][] grid;
+
+	// public boolean[][] grid;
 
 	public Grid() {
 	}
@@ -23,11 +29,17 @@ public class Grid {
 	public void init(int x, int y) {
 		rowSize = x;
 		colSize = y;
-		grid = new boolean[rowSize][colSize];
+		grid = new square[rowSize][colSize][2];
+		for (int i = 0; i < rowSize; i++) {
+			for (int j = 0; j < colSize; j++) {
+				grid[i][j][0] = square.COVERED;
+				grid[i][j][1] = square.NONE;
+			}
+		}
 	}
 
 	public boolean isMine(int i, int j) {
-		if (grid[i][j] == true)
+		if (grid[i][j][1] == square.MINE)
 			return true;
 		return false;
 	}
@@ -45,9 +57,9 @@ public class Grid {
 			do {
 				randX = new Random().nextInt(rowSize);
 				randY = new Random().nextInt(colSize);
-			} while (grid[randX][randY] == true);
+				grid[randX][randY][1] = square.MINE;
+			} while (grid[randX][randY][1] == square.MINE);
 
-			grid[randX][randY] = true;
 		}
 	}
 }

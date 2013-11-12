@@ -1,5 +1,6 @@
-package board;
+package grid;
 
+import grid.Grid;
 import junit.framework.TestCase;
 
 public class GridTest extends TestCase {

@@ -15,6 +15,11 @@ public class GameManagerTest extends TestCase {
 		GM.newGame(1, 1, 1);
 		GM.openSquare(1, 1);
 	}
+	
+	public void testGetMineAround() throws Exception {
+		GM.newGame(2, 2, 1);
+		GM.openSquare(1, 1);
+	}
 
 	public void testFlag() throws Exception {
 

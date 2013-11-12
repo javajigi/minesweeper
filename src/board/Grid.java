@@ -7,7 +7,7 @@ public class Grid {
 	private int colSize;
 	private int numberOfMine;
 
-	public boolean[][] board;
+	public boolean[][] grid;
 
 	public Grid() {
 	}
@@ -23,11 +23,11 @@ public class Grid {
 	public void init(int x, int y) {
 		rowSize = x;
 		colSize = y;
-		board = new boolean[rowSize][colSize];
+		grid = new boolean[rowSize][colSize];
 	}
 
-	public boolean getState(int i, int j) {
-		if (board[i][j] == true)
+	public boolean isMine(int i, int j) {
+		if (grid[i][j] == true)
 			return true;
 		return false;
 	}
@@ -45,9 +45,9 @@ public class Grid {
 			do {
 				randX = new Random().nextInt(rowSize);
 				randY = new Random().nextInt(colSize);
-			} while (board[randX][randY] == true);
+			} while (grid[randX][randY] == true);
 
-			board[randX][randY] = true;
+			grid[randX][randY] = true;
 		}
 	}
 }

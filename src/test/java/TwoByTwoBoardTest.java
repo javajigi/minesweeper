@@ -42,14 +42,14 @@ public class TwoByTwoBoardTest {
 		assertEquals(TwoByTwoBoard.getNumofNearMines(2, 2), 3);
 	}
 
-	@Test
-	public void CheckIfYouLoseOpenAllMines() throws Exception {
-		System.out.println("======= Testing CheckIfYouLoseOpenAllMines() =======");
-		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
-		TwoByTwoBoard.setMine(1, 1, true);
-		TwoByTwoBoard.setMine(1, 2, true);
-		TwoByTwoBoard.setShow(1, 1, true);
-		GameMaster.nowGaming(TwoByTwoBoard); // Win, Lose, Gaming이 결정됨.
-		assertEquals(TwoByTwoBoard.getBlock(1, 2).isShow(), true);
-	}
+//	@Test
+//	public void CheckIfYouLoseOpenAllMines() throws Exception {
+//		System.out.println("======= Testing CheckIfYouLoseOpenAllMines() =======");
+//		Board TwoByTwoBoard = Board.createBoard(2, 2, 0);
+//		TwoByTwoBoard.setMine(1, 1, true);
+//		TwoByTwoBoard.setMine(1, 2, true);
+//		TwoByTwoBoard.setShow(1, 1, true);
+//		GameMaster.checkStatus(TwoByTwoBoard); // Win, Lose, Gaming이 결정됨.
+//		assertEquals(TwoByTwoBoard.getBlock(1, 2).isShow(), true);
+//	}
 }

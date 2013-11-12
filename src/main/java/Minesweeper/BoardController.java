@@ -7,20 +7,22 @@ public interface BoardController {
 	void setShow(int xAxis, int yAxis, boolean show);
 
 	void openBlock(int xAxis, int yAxis);
+	void openBlock(String axis);
 
 	Block getBlock(int xAxis, int yAxis);
+	Block getBlock(String axis);
 
-	int getNumofInvisibleBlocks();
-	int getNumofFlagedBlocks();
-	int getNumofMines();
-	int getNumofBlocks();
+	int getNumOfInvisibleBlocks();
+	int getNumOfFlagedBlocks();
+	int getNumOfMines();
+	int getNumOfBlocks();
 
 	int getXNum();
 	int getYNum();
 
 	int getNumofNearMines(int xAxis, int yAxis);
 
-	boolean isBomb();
+	boolean isAnyMineBomb();
 
 	void calcBoard();
 	void openAllMines();

@@ -28,11 +28,11 @@ public class OneByOneBoardTest {
 		Board OneByOneBoard = Board.createBoard(1, 1, 0);
 
 		OneByOneBoard.calcBoard();
-		assertEquals(OneByOneBoard.getNumofFlagedBlocks(), 0);
+		assertEquals(OneByOneBoard.getNumOfFlagedBlocks(), 0);
 
 		OneByOneBoard.setFlag(1, 1, true);
 
 		OneByOneBoard.calcBoard();
-		assertEquals(OneByOneBoard.getNumofFlagedBlocks(), 1);
+		assertEquals(OneByOneBoard.getNumOfFlagedBlocks(), 1);
 	}
 }

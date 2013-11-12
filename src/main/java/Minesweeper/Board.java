@@ -4,22 +4,19 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Board implements BoardController {
+	private static final char COLUMN_START_CHAR = 'a';
 	private ArrayList<ArrayList<Block>> XLineBlocks = new ArrayList<ArrayList<Block>>();
 	private int xNum, yNum;
-	private int NumofMines;
-	private int NumofInvisibleBlocks;
-	private int NumofFlagedBlocks;
-	private boolean bomb = false;
+	private int numOfMines;
+	private int numOfInvisibleBlocks;
+	private int numOfFlagedBlocks;
+	private boolean isAnyMineBomb = false;
 
-	/*
-		TODO 아직 NumofMines 가 구현되지 않음.
-	 */
-
-	private Board(int xNum, int yNum, int NumofMines) {
+	private Board(int xNum, int yNum, int numOfMines) {
 		this.xNum = xNum;
 		this.yNum = yNum;
-		this.NumofMines = NumofMines;
-		initialize(xNum, yNum, NumofMines);
+		this.numOfMines = numOfMines;
+		initialize(xNum, yNum, numOfMines);
 	}
 
 	public static Board createBoard(int xNum, int yNum, int NumofMines) {
@@ -116,9 +113,9 @@ public class Board implements BoardController {
 
 		}
 
-		this.NumofInvisibleBlocks = NumofInvisibleBlocks;
-		this.NumofFlagedBlocks = NumofFlagedBlocks;
-		this.bomb = bomb;
+		this.numOfInvisibleBlocks = NumofInvisibleBlocks;
+		this.numOfFlagedBlocks = NumofFlagedBlocks;
+		this.isAnyMineBomb = bomb;
 	}
 
 	@Override
@@ -144,22 +141,22 @@ public class Board implements BoardController {
 	}
 
 	@Override
-	public int getNumofInvisibleBlocks() {
-		return NumofInvisibleBlocks;
+	public int getNumOfInvisibleBlocks() {
+		return numOfInvisibleBlocks;
 	}
 
 	@Override
-	public int getNumofFlagedBlocks() {
-		return NumofFlagedBlocks;
+	public int getNumOfFlagedBlocks() {
+		return numOfFlagedBlocks;
 	}
 
 	@Override
-	public int getNumofMines() {
-		return NumofMines;
+	public int getNumOfMines() {
+		return numOfMines;
 	}
 
 	@Override
-	public int getNumofBlocks() {
+	public int getNumOfBlocks() {
 		return xNum * yNum;
 	}
 
@@ -174,8 +171,8 @@ public class Board implements BoardController {
 	}
 
 	@Override
-	public boolean isBomb() {
-		return bomb;
+	public boolean isAnyMineBomb() {
+		return isAnyMineBomb;
 	}
 
 	@Override
@@ -197,14 +194,25 @@ public class Board implements BoardController {
 	public void openBlock(int xAxis, int yAxis) {
 		if (!getBlock(xAxis, yAxis).isShow()) {
 			getBlock(xAxis, yAxis).setShow(true);
-			if (getNumofNearMines(xAxis, yAxis)==0) {
+			if (getNumofNearMines(xAxis, yAxis)==0 && !getBlock(xAxis, yAxis).isMine()) {
 				for (Block block : getAllNearBlocks(xAxis, yAxis)) {
 					openBlock(block);
 				}
 			}
 		}
 		else
-			System.out.println("This Block is already Open!");
+			;
+	}
+
+	@Override
+	public void openBlock(String axis) {
+		openBlock(Integer.parseInt(axis.substring(1)), generateColumnIndex(axis.charAt(0)) + 1);
+	}
+
+	private int generateColumnIndex(char columnIndex) {
+		int target = Character.getNumericValue(columnIndex);
+		int source = Character.getNumericValue(COLUMN_START_CHAR);
+		return target - source;
 	}
 
 	private void openBlock(Block block) {
@@ -216,5 +224,10 @@ public class Board implements BoardController {
 	@Override
 	public Block getBlock(int xAxis, int yAxis) {
 		return XLineBlocks.get(xAxis-1).get(yAxis-1);
+	}
+
+	@Override
+	public Block getBlock(String axis) {
+		return getBlock(generateColumnIndex(axis.charAt(0)), Integer.parseInt(axis.substring(1)) - 1);
 	}
 }

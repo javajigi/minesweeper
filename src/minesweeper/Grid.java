@@ -8,7 +8,7 @@ public class Grid {
 
 	public Grid(int row, int col) {
 		grid = new Square[row][col];
-		
+
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < col; j++) {
 				grid[i][j] = new Square();
@@ -29,11 +29,11 @@ public class Grid {
 	}
 
 	public boolean isGameOver() {
-		if (numberOfMine == getRow()*getCol()) {
+		if (numberOfMine == getRow() * getCol()) {
 			return true;
 		}
-		
-		if (isAllOpen()){
+
+		if (isAllOpen()) {
 			return true;
 		}
 		return false;
@@ -42,7 +42,7 @@ public class Grid {
 	private boolean isAllOpen() {
 		for (int i = 0; i < getRow(); i++) {
 			for (int j = 0; j < getCol(); j++) {
-				if (!grid[i][j].isOpen()){
+				if (!grid[i][j].isOpen()) {
 					return false;
 				}
 			}
@@ -64,9 +64,9 @@ public class Grid {
 		}
 		return numberOfMine;
 	}
-	
+
 	public Square getSquare(int row, int col) {
-		return grid[row][col]; 
+		return grid[row][col];
 	}
 
 	public boolean isFlag(int i, int j) {
@@ -80,7 +80,7 @@ public class Grid {
 	public boolean isLose() {
 		for (int i = 0; i < getRow(); i++) {
 			for (int j = 0; j < getCol(); j++) {
-				if ( grid[i][j].isLose()){
+				if (grid[i][j].isLose()) {
 					return true;
 				}
 			}

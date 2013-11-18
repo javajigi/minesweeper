@@ -8,6 +8,7 @@ public class OutPutByConsole {
 	public static final String NEWLINE = System.getProperty("line.separator");
 	Position pos = new Position();
 	Square sq;
+	int numberfomine;
 	
 	public String showAll(Grid grid) {
 		String output = "";
@@ -19,7 +20,8 @@ public class OutPutByConsole {
 				if(sq.isMine()) {
 					output += " M ";
 				} else {
-					output += " O ";
+					numberfomine = grid.openSquare(pos);
+					output += " " + numberfomine + " ";
 				}
 			}
 			output += NEWLINE;

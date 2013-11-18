@@ -11,7 +11,7 @@ public class BoardTest extends TestCase {
 	OutPutByConsole print = new OutPutByConsole();
 
 	public void setUp() {
-		grid = new Grid();
+		grid = new Grid(3,3);
 		pos = new Position();
 		pos.x = 0;
 		pos.y = 0;
@@ -105,9 +105,9 @@ public class BoardTest extends TestCase {
 		
 		grid.openSquare(pos);
 		
-		String str = " M  O  O " + OutPutByConsole.NEWLINE;
-		str += " O  O  O " + OutPutByConsole.NEWLINE;
-		str += " O  O  O " + OutPutByConsole.NEWLINE;;
+		String str = " M  1  0 " + OutPutByConsole.NEWLINE;
+		str += " 1  1  0 " + OutPutByConsole.NEWLINE;
+		str += " 0  0  0 " + OutPutByConsole.NEWLINE;;
 		
 		assertEquals(str ,print.showAll(grid));
 		System.out.print(print.showAll(grid));

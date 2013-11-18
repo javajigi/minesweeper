@@ -1,14 +1,14 @@
 package board;
 
 public class Grid {
-	public int girdSizeX=3;
-	public int girdSizeY=3;
+	public int girdSizeX;
+	public int girdSizeY;
 	private Square grid[][];
 	public boolean isLose = false;
 
-	public Grid() {
-//		girdSizeX = x;
-//		gridSizeY = y;
+	public Grid(int x, int y) {
+		girdSizeX = x;
+		girdSizeY = y;
 		grid = new Square[girdSizeX][girdSizeY];
 		for (int i = 0; i < girdSizeX; i++) {
 			for (int j = 0; j < girdSizeY; j++) {
@@ -36,8 +36,8 @@ public class Grid {
 		int hint=0;
 		startX = (pos.x-1 >= 0)? pos.x-1 : pos.x;
 		startY = (pos.y-1 >= 0)? pos.y-1 : pos.y;
-		endX = (pos.x+1 <= girdSizeX)? pos.x+1 : pos.x;
-		endY = (pos.y+1 <= girdSizeY)? pos.y+1 : pos.y;
+		endX = (pos.x+1 < girdSizeX)? pos.x+1 : pos.x;
+		endY = (pos.y+1 < girdSizeY)? pos.y+1 : pos.y;
 		
 		for (int i = startX ; i <= endX; i++) {
 			for (int j = startY; j <= endY; j++) {

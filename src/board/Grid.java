@@ -3,12 +3,13 @@ package board;
 public class Grid {
 	public int girdSizeX=3;
 	public int girdSizeY=3;
-	private Square grid[][] = new Square[girdSizeX][girdSizeY];
+	private Square grid[][];
 	public boolean isLose = false;
 
 	public Grid() {
 //		girdSizeX = x;
 //		gridSizeY = y;
+		grid = new Square[girdSizeX][girdSizeY];
 		for (int i = 0; i < girdSizeX; i++) {
 			for (int j = 0; j < girdSizeY; j++) {
 				grid[i][j] = new Square();
@@ -24,7 +25,6 @@ public class Grid {
 		grid[pos.x][pos.y].setOpen(true);
 		if(grid[pos.x][pos.y].isMine()) {
 			isLose = true;
-			System.out.println("you lose!");
 		}
 		checkNumberOfMine(pos);
 		

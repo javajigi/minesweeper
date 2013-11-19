@@ -30,5 +30,24 @@ public class SquareTest {
 		square.setFlag();
 		assertTrue(square.isFlag());
 	}
+	
+	@Test
+	public void printSquare() {
+		square.setNumOfNearMines();
+		assertEquals("C", square.printSymbol());
+		square.setOpen();
+		assertEquals("1", square.printSymbol());
+		
+		square = new Square();
+		assertEquals("C", square.printSymbol());
+		square.setMine();
+		assertEquals("C", square.printSymbol());
+		square.setFlag();
+		assertEquals("F", square.printSymbol());
+		square.setFlag();
+		assertEquals("C", square.printSymbol());
+		square.setOpen();
+		assertEquals("M", square.printSymbol());
+	}
 
 }

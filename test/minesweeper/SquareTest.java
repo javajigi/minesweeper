@@ -16,7 +16,7 @@ public class SquareTest {
 	
 	@Test
 	public void initSquare() {
-		assertFalse(square.isMine());
+		assertFalse(square.hasMine());
 		assertFalse(square.isOpen());
 		assertFalse(square.isFlag());
 	}
@@ -24,11 +24,27 @@ public class SquareTest {
 	@Test
 	public void settingSquare() {
 		square.setMine();
-		assertTrue(square.isMine());
+		assertTrue(square.hasMine());
 		square.setOpen();
 		assertTrue(square.isOpen());
 		square.setFlag();
 		assertTrue(square.isFlag());
 	}
-
+	
+	@Test
+	public void statusWhenClose() throws Exception {
+		assertEquals(".", square.status());
+		square.setFlag();
+		assertEquals("X", square.status());
+	}
+	
+	@Test
+	public void statusWhenOpen() throws Exception {
+		square.setOpen();
+		assertEquals("0", square.status());
+		square.setNeighborMineCount(1);
+		assertEquals("1", square.status());
+		square.setMine();
+		assertEquals("*", square.status());
+	}
 }

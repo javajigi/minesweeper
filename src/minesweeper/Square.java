@@ -4,8 +4,9 @@ public class Square {
 	private boolean mine = false;
 	private boolean open = false;
 	private boolean flag = false;
-
-	public boolean isMine() {
+	private int neighborMineCount = 0;
+	
+	public boolean hasMine() {
 		return mine;
 	}
 
@@ -30,10 +31,28 @@ public class Square {
 		this.flag = true;
 		
 	}
+	
+	public void setNeighborMineCount(int neighborMineCount) {
+		this.neighborMineCount  = neighborMineCount;
+	}
 
 	public boolean isLose() {
-		return isOpen() && isMine();
+		return isOpen() && hasMine();
 	}
-	
 
+	public String status() {
+		if (isOpen()) {
+			if (hasMine()) {
+				return "*";
+			}
+			
+			return this.neighborMineCount + "";
+		}
+		
+		if (isFlag()) {
+			return "X";
+		}
+		
+		return ".";
+	}
 }

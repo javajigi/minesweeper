@@ -51,7 +51,7 @@ public class Grid {
 	}
 
 	public void putMine(int row, int col) {
-		if (!grid[row][col].isMine()) {
+		if (!grid[row][col].hasMine()) {
 			grid[row][col].setMine();
 			++numberOfMine;
 		}
@@ -59,7 +59,7 @@ public class Grid {
 
 	public int openSquare(int i, int j) {
 		grid[i][j].setOpen();
-		if (grid[i][j].isMine()) {
+		if (grid[i][j].hasMine()) {
 			return 0;
 		}
 		return numberOfMine;
@@ -88,4 +88,7 @@ public class Grid {
 		return false;
 	}
 
+	public String generate() {
+		return "";
+	}
 }

@@ -68,4 +68,10 @@ public class GridTest {
 		grid.openSquare(0, 0);
 		assertTrue(grid.isLose());
 	}
+	
+	@Test
+	public void oneByOne() throws Exception {
+		grid = new Grid(1, 1);
+		System.out.println(grid.generate());
+	}
 }

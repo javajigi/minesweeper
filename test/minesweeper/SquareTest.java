@@ -63,4 +63,10 @@ public class SquareTest {
 		assertFalse(square.hasMine());
 		assertEquals(neighborMineCount, square.getNeighborMineCount());
 	}
+	
+	@Test
+	public void isNoNeighborMine() throws Exception {
+		Square square = Square.createSquare(0);
+		assertTrue(square.isNoNeighborMine());
+	}
 }

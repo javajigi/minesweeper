@@ -55,7 +55,7 @@ public class Square {
 	public int getNeighborMineCount() {
 		return neighborMineCount;
 	}
-
+	
 	public String status() {
 		if (isOpen()) {
 			if (hasMine()) {
@@ -70,6 +70,10 @@ public class Square {
 		}
 		
 		return ".";
+	}
+	
+	public boolean isNoNeighborMine() {
+		return !hasMine() && (this.neighborMineCount == 0);
 	}
 
 	public static Square createSquareMine() {

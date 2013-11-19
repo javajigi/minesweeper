@@ -58,11 +58,25 @@ public class Grid {
 	}
 
 	public int openSquare(int i, int j) {
-		grid[i][j].setOpen();
-		if (grid[i][j].hasMine()) {
+		if (!isValidPosition(i, j)) {
+			return 0;
+		}
+
+		Square square = grid[i][j];
+		square.setOpen();
+		if (square.isNoNeighborMine()) {
+			openSquare(i + 1, j);
+			openSquare(i, j + 1);
+		}
+
+		if (square.hasMine()) {
 			return 0;
 		}
 		return numberOfMine;
+	}
+
+	private boolean isValidPosition(int i, int j) {
+		return (i > -1 && i < getRow()) && (j > -1 && j < getCol());
 	}
 
 	public Square getSquare(int row, int col) {
@@ -89,6 +103,13 @@ public class Grid {
 	}
 
 	public String generate() {
-		return "";
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < getRow(); i++) {
+			for (int j = 0; j < getCol(); j++) {
+				sb.append(grid[i][j].status());
+			}
+			sb.append("\n");
+		}
+		return sb.toString();
 	}
 }

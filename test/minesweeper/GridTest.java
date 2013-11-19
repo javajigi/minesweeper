@@ -23,12 +23,6 @@ public class GridTest {
 		assertEquals(3, grid.getCol());
 	}
 
-//	@Test
-//	public void oneMineWin() throws Exception {
-//		grid.putMine(0, 0);
-//		assertFalse(grid.isGameOver());
-//	}
-
 	@Test
 	public void noMineWin() throws Exception {
 		assertFalse(grid.isGameOver());
@@ -70,8 +64,33 @@ public class GridTest {
 	}
 	
 	@Test
-	public void oneByOne() throws Exception {
+	public void oneByOneWhenNoMine() throws Exception {
 		grid = new Grid(1, 1);
-		System.out.println(grid.generate());
+		assertEquals(".\n", grid.generate());
+		grid.setFlag(0, 0);
+		assertEquals("X\n", grid.generate());
+		grid.openSquare(0, 0);
+		assertEquals("0\n", grid.generate());
+		assertTrue(grid.isGameOver());
+	}
+	
+	@Test
+	public void oneByOneWhenMine() throws Exception {
+		grid = new Grid(1, 1);
+		grid.putMine(0, 0);
+		assertEquals(".\n", grid.generate());
+		grid.setFlag(0, 0);
+		assertEquals("X\n", grid.generate());
+		grid.openSquare(0, 0);
+		assertEquals("*\n", grid.generate());
+		assertTrue(grid.isGameOver());
+	}
+	
+	@Test
+	public void twoByTwoWhenNoMine() throws Exception {
+		grid = new Grid(2, 2);
+		assertEquals("..\n..\n", grid.generate());
+		grid.openSquare(0, 0);
+		assertEquals("00\n00\n", grid.generate());
 	}
 }

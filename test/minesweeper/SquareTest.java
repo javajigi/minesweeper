@@ -47,4 +47,20 @@ public class SquareTest {
 		square.setMine();
 		assertEquals("*", square.status());
 	}
+	
+	@Test
+	public void createSquareWhenHasMine() throws Exception {
+		Square square = Square.createSquareMine();
+		assertFalse(square.isOpen());
+		assertTrue(square.hasMine());
+	}
+	
+	@Test
+	public void createSquareWhenHasNotMine() throws Exception {
+		int neighborMineCount = 2;
+		Square square = Square.createSquare(neighborMineCount);
+		assertFalse(square.isOpen());
+		assertFalse(square.hasMine());
+		assertEquals(neighborMineCount, square.getNeighborMineCount());
+	}
 }

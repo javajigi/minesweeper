@@ -28,4 +28,25 @@ public class OutPutByConsole {
 		}
 		return output;
 	}
+	
+	public String showOpen(Grid grid) {
+		String output = "";
+		for (int i = 0; i < grid.girdSizeX; i++) {
+			for (int j = 0; j < grid.girdSizeY; j++) {
+				pos.x = i;
+				pos.y = j;
+				sq = grid.getSquare(pos);
+				if(sq.isOpen() && sq.isMine()) {
+					output += " M ";
+				} else if(sq.isOpen() && !sq.isMine()) {
+					numberfomine = grid.openSquare(pos);
+					output += " " + numberfomine + " ";
+				} else {
+					output += " O ";
+				}
+			}
+			output += NEWLINE;
+		}
+		return output;
+	}
 }

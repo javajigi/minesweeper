@@ -4,7 +4,7 @@ public class Grid {
 	public int girdSizeX;
 	public int girdSizeY;
 	private Square grid[][];
-	public boolean isLose = false;
+	private boolean isLose = false;
 
 	public Grid(int x, int y) {
 		girdSizeX = x;
@@ -71,11 +71,8 @@ public class Grid {
 		return false;
 	}
 
-	public boolean isLose(Position pos) {
-		if (grid[pos.x][pos.y].isMine()) {
-			return true;
-		}
-		return false;
+	public boolean isLose() {
+		return isLose;
 
 	}
 

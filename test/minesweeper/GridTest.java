@@ -93,4 +93,22 @@ public class GridTest {
 		grid.openSquare(0, 0);
 		assertEquals("00\n00\n", grid.generate());
 	}
+	
+	@Test
+	public void twoByTwoWhenOneMine() throws Exception {
+		grid = new Grid(2, 2);
+		grid.putMine(0, 0);
+		
+		grid.openSquare(0, 1);
+		assertEquals(".1\n..\n", grid.generate());
+		
+		grid.openSquare(1, 0);
+		assertEquals(".1\n1.\n", grid.generate());
+
+		grid.openSquare(1, 1);
+		assertEquals(".1\n11\n", grid.generate());
+		
+		grid.openSquare(0, 0);
+		assertEquals("*1\n11\n", grid.generate());
+	}
 }

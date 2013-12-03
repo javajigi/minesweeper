@@ -56,6 +56,10 @@ public class Square {
 		return neighborMineCount;
 	}
 	
+	public void increaseMineCount() {
+		neighborMineCount++;
+	}
+	
 	public String status() {
 		if (isOpen()) {
 			if (hasMine()) {

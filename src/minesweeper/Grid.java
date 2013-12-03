@@ -4,28 +4,29 @@ public class Grid {
 
 	private int numberOfMine = 0;
 
-	private Square grid[][];
+	private Row rows[];
 
 	public Grid(int row, int col) {
-		grid = new Square[row][col];
-
-		for (int i = 0; i < row; i++) {
-			for (int j = 0; j < col; j++) {
-				grid[i][j] = new Square();
-			}
+		rows = new Row[row];
+		for (int i = 0; i < rows.length; i++) {
+			rows[i] = new Row(col);
 		}
 	}
 
 	public int getRow() {
-		return grid.length;
+		return rows.length;
 	}
 
 	public int getCol() {
-		return grid[0].length;
+		return rows[0].sizeOfColumn();
 	}
 
 	public int getNumberOfMine() {
 		return numberOfMine;
+	}
+
+	private Square findSquare(int row, int column) {
+		return rows[row].findSquare(column);
 	}
 
 	public boolean isGameOver() {
@@ -42,7 +43,7 @@ public class Grid {
 	private boolean isAllOpen() {
 		for (int i = 0; i < getRow(); i++) {
 			for (int j = 0; j < getCol(); j++) {
-				if (!grid[i][j].isOpen()) {
+				if (!findSquare(i, j).isOpen()) {
 					return false;
 				}
 			}
@@ -51,8 +52,21 @@ public class Grid {
 	}
 
 	public void putMine(int row, int col) {
-		if (!grid[row][col].hasMine()) {
-			grid[row][col].setMine();
+		if (!isValidPosition(row, col)) {
+			return;
+		}
+
+		if (!findSquare(row, col).hasMine()) {
+			int startRow = (row - 1 < 0) ? row : row - 1;
+			int endRow = (row + 1 < getRow()) ? row + 1 : row;
+
+			for (int i = startRow; i <= endRow; i++) {
+				Row rowOfGrid = rows[i];
+				rowOfGrid.increaseMineCount(col);
+				if (i == row) {
+					rowOfGrid.putMine(col);
+				}
+			}
 			++numberOfMine;
 		}
 	}
@@ -62,7 +76,7 @@ public class Grid {
 			return 0;
 		}
 
-		Square square = grid[i][j];
+		Square square = findSquare(i, j);
 		square.setOpen();
 		if (square.isNoNeighborMine()) {
 			openSquare(i + 1, j);
@@ -79,24 +93,19 @@ public class Grid {
 		return (i > -1 && i < getRow()) && (j > -1 && j < getCol());
 	}
 
-	public Square getSquare(int row, int col) {
-		return grid[row][col];
-	}
-
 	public boolean isFlag(int i, int j) {
-		return grid[i][j].isFlag();
+		return findSquare(i, j).isFlag();
 	}
 
 	public void setFlag(int i, int j) {
-		grid[i][j].setFlag();
+		findSquare(i, j).setFlag();
 	}
 
 	public boolean isLose() {
 		for (int i = 0; i < getRow(); i++) {
-			for (int j = 0; j < getCol(); j++) {
-				if (grid[i][j].isLose()) {
-					return true;
-				}
+			Row row = rows[i];
+			if (row.isLose()) {
+				return true;
 			}
 		}
 		return false;
@@ -106,10 +115,11 @@ public class Grid {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < getRow(); i++) {
 			for (int j = 0; j < getCol(); j++) {
-				sb.append(grid[i][j].status());
+				sb.append(findSquare(i, j).status());
 			}
 			sb.append("\n");
 		}
+		System.out.println(sb.toString());
 		return sb.toString();
 	}
 }

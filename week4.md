@@ -1,11 +1,11 @@
 week4
-11월 26일
+12월 3일
 
 
-- 패배시 grid All open(gridPint())
+# - 패배시 grid All open(gridPint())
 
 
 3x3(선택사항)
-- grid를 open(2,2)한다면 return 0~8까지
-- 0일 경우 주변 square를 1 이상 값 나올 때까지 open
+#- grid를 open(2,2)한다면 return 0~8까지
+#- 스퀘어를 오픈할때 마인이 아닐경우, 0주변(8방향)을 오픈 -> 오픈된 스퀘어중 0이 있으면 다시 8방향오픈
 

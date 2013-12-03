@@ -49,23 +49,35 @@ public class Grid {
 	public void putMine(int row, int col) {
 		int startRow = (row - 1 < 0) ? row : row - 1;
 		int endRow = (row + 1 < getRow()) ? row + 1 : row;
-
+		
+		if(getSquare(row, col).isMine()) return;
 		for (int i = startRow; i <= endRow; i++) {
 			Row rowOfGrid = rows[i];
-			rowOfGrid.putMine(col);
+			
+			rowOfGrid.increaseNearNumberOfMine(col);
 			if (i == row) {
 				rowOfGrid.setMine(col);
 			}
 		}
 	}
 
-	public int openSquare(int i, int j) {
-		Square square = getSquare(i, j);
+	public int openSquare(int row, int col) throws GameoverException {
+		Square square = getSquare(row, col);
 		square.setOpen();
-		if (!square.isMine())
-			return square.getNumOfNearMines();
+		if (!square.isMine()) {
+			int startRow = (row - 1 < 0) ? row : row - 1;
+			int endRow = (row + 1 < getRow()) ? row + 1 : row;
 
-		return 0;
+			if (square.getNumOfNearMines() == 0){
+				for (int i = startRow; i <= endRow; i++) {
+					Row rowOfGrid = rows[i];
+					rowOfGrid.openSquare(i, col, this);
+				}
+			}
+			
+			return square.getNumOfNearMines();
+		}
+		throw new GameoverException();
 	}
 
 	public Square getSquare(int row, int col) {
@@ -80,16 +92,6 @@ public class Grid {
 		getSquare(i, j).setFlag();
 	}
 
-	public boolean isLose() {
-		for (int i = 0; i < getRow(); i++) {
-			Row row = rows[i];
-			if (row.isLose()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public String printConsole() {
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < getRow(); i++) {
@@ -98,7 +100,15 @@ public class Grid {
 			}
 			result.append("\n");
 		}
+		System.out.println(result.toString());
 		return result.toString();
+	}
+
+	public void openAll() {
+		for (int i = 0; i < getRow(); i++) {
+			rows[i].openAll();
+		}
+
 	}
 
 }

@@ -25,12 +25,12 @@ public class GridTest {
 
 	@Test
 	public void noMineWin() throws Exception {
-		assertFalse(grid.isGameOver());
+		assertFalse(grid.isWin());
 		grid.openSquare(0, 0);
 		grid.openSquare(0, 1);
 		grid.openSquare(1, 0);
 		grid.openSquare(1, 1);
-		assertTrue(grid.isGameOver());
+		assertTrue(grid.isWin());
 	}
 
 	@Test
@@ -38,7 +38,6 @@ public class GridTest {
 		assertEquals(0, grid.getNumberOfMine());
 		grid.putMine(0, 0);
 		assertEquals(1, grid.openSquare(1, 1));
-		assertEquals(0, grid.openSquare(0, 0));
 		grid.putMine(1, 0);
 		assertEquals(2, grid.openSquare(1, 1));
 		grid.putMine(0, 1);
@@ -46,7 +45,7 @@ public class GridTest {
 		grid.putMine(0, 1);
 		assertEquals(3, grid.openSquare(1, 1));
 		grid.putMine(1, 1);
-		assertTrue(grid.isGameOver());
+		assertTrue(grid.isWin());
 	}
 	
 	@Test
@@ -56,11 +55,10 @@ public class GridTest {
 		assertTrue(grid.isFlag(0, 0));
 	}
 	
-	@Test
-	public void isLose() throws Exception {
+	@Test(expected=LoseGameException.class)
+	public void loseGame() throws Exception {
 		grid.putMine(0, 0);
 		grid.openSquare(0, 0);
-		assertTrue(grid.isLose());
 	}
 	
 	@Test
@@ -71,7 +69,7 @@ public class GridTest {
 		assertEquals("X\n", grid.generate());
 		grid.openSquare(0, 0);
 		assertEquals("0\n", grid.generate());
-		assertTrue(grid.isGameOver());
+		assertTrue(grid.isWin());
 	}
 	
 	@Test
@@ -81,9 +79,7 @@ public class GridTest {
 		assertEquals(".\n", grid.generate());
 		grid.setFlag(0, 0);
 		assertEquals("X\n", grid.generate());
-		grid.openSquare(0, 0);
-		assertEquals("*\n", grid.generate());
-		assertTrue(grid.isGameOver());
+		assertTrue(grid.isWin());
 	}
 	
 	@Test
@@ -108,7 +104,6 @@ public class GridTest {
 		grid.openSquare(1, 1);
 		assertEquals(".1\n11\n", grid.generate());
 		
-		grid.openSquare(0, 0);
-		assertEquals("*1\n11\n", grid.generate());
+		assertTrue(grid.isWin());
 	}
 }

@@ -1,5 +1,8 @@
 package minesweeper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Grid {
 
 	private int numberOfMine = 0;
@@ -29,15 +32,17 @@ public class Grid {
 		return rows[row].findSquare(column);
 	}
 
-	public boolean isGameOver() {
-		if (numberOfMine == getRow() * getCol()) {
-			return true;
+	private List<Square> findAllClosedSquare() {
+		List<Square> closedSquares = new ArrayList<Square>();
+		for (int i = 0; i < getRow(); i++) {
+			for (int j = 0; j < getCol(); j++) {
+				Square square = findSquare(i, j);
+				if (!square.isOpen()){
+					closedSquares.add(square);
+				}
+			}
 		}
-
-		if (isAllOpen()) {
-			return true;
-		}
-		return false;
+		return closedSquares;
 	}
 
 	private boolean isAllOpen() {
@@ -71,16 +76,16 @@ public class Grid {
 		}
 	}
 
-	public int openSquare(int i, int j) {
-		if (!isValidPosition(i, j)) {
+	public int openSquare(int row, int col) throws LoseGameException {
+		if (!isValidPosition(row, col)) {
 			return 0;
 		}
 
-		Square square = findSquare(i, j);
+		Square square = findSquare(row, col);
 		square.setOpen();
 		if (square.isNoNeighborMine()) {
-			openSquare(i + 1, j);
-			openSquare(i, j + 1);
+			openSquare(row + 1, col);
+			openSquare(row, col + 1);
 		}
 
 		if (square.hasMine()) {
@@ -99,6 +104,20 @@ public class Grid {
 
 	public void setFlag(int i, int j) {
 		findSquare(i, j).setFlag();
+	}
+	
+	public boolean isWin() {
+		if (isAllOpen()) {
+			return true;
+		}
+		
+		for (Square each : findAllClosedSquare()) {
+			if (!each.hasMine()) {
+				return false;
+			}
+		}
+		
+		return true;
 	}
 
 	public boolean isLose() {

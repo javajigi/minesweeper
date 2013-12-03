@@ -34,9 +34,11 @@ public class Square {
 		this.mine = true;
 	}
 
-	public void setOpen() {
+	public void setOpen() throws LoseGameException {
+		if (hasMine()) {
+			throw new LoseGameException();
+		}
 		this.open = true;
-		
 	}
 
 	public void setFlag() {

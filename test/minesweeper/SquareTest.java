@@ -22,11 +22,11 @@ public class SquareTest {
 	}
 	
 	@Test
-	public void settingSquare() {
-		square.setMine();
-		assertTrue(square.hasMine());
+	public void settingSquare() throws Exception {
 		square.setOpen();
 		assertTrue(square.isOpen());
+		square.setMine();
+		assertTrue(square.hasMine());
 		square.setFlag();
 		assertTrue(square.isFlag());
 	}

@@ -1,6 +1,8 @@
 package minesweeper;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,12 +62,6 @@ public class GridTest {
 		assertEquals("C1\n11\n", grid.printConsole());
 	}
 	
-//	@Test
-//	public void oneMineWin() throws Exception {
-//		grid.putMine(0, 0);
-//		assertFalse(grid.isGameOver());
-//	}
-
 	@Test
 	public void noMineWin() throws Exception {
 		assertFalse(grid.isGameOver());
@@ -87,7 +83,6 @@ public class GridTest {
 		grid.putMine(0, 1);
 		assertEquals(3, grid.openSquare(1, 1));
 		grid.putMine(1, 1);
-//		assertTrue(grid.isGameOver());
 	}
 	
 	@Test

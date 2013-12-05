@@ -58,5 +58,12 @@ public class Square {
 	public void setNumOfNearMines() {
 		this.numOfNearMines++;
 	}
+	
+	public boolean hasNotNearMine() {
+		if (getNumOfNearMines() == 0) {
+			return true;
+		}
+		return false;
+	}
 
 }

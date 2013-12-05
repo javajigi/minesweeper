@@ -58,14 +58,11 @@ public class Row {
 	}
 
 	public void openSquare(int row, int col, Grid grid) throws GameoverException {
-		int startCol = (col-1 < 0)? col : col-1;
-		int endCol = (col+1 < getCol())? col+1 : col;
-		
-		for (int j = startCol; j <= endCol; j++) {
+		for (int j = checkGridBoundary(col-1); j <= checkGridBoundary(col+1); j++) {
 			if (squares[j].isOpen()) continue;
 
 			squares[j].setOpen();
-			if (squares[j].getNumOfNearMines() == 0)
+			if (squares[j].hasNotNearMine())
 				grid.openSquare(row, j);
 		}	
 		
@@ -78,6 +75,15 @@ public class Row {
 		}
 		result.append("\n");
 		return result;
+	}
+	
+	public int checkGridBoundary(int col) {
+		if(col < 0) {
+			return 0;
+		} else if(col >= getCol()) {
+			return getCol()-1;
+		}
+		return col;
 	}
 
 }

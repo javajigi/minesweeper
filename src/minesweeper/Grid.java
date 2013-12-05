@@ -65,11 +65,8 @@ public class Grid {
 		Square square = getSquare(row, col);
 		square.setOpen();
 		if (!square.isMine()) {
-			int startRow = (row - 1 < 0) ? row : row - 1;
-			int endRow = (row + 1 < getRow()) ? row + 1 : row;
-
-			if (square.getNumOfNearMines() == 0){
-				for (int i = startRow; i <= endRow; i++) {
+			if (square.hasNotNearMine()){
+				for (int i = checkGridBoundary(row-1); i <= checkGridBoundary(row+1); i++) {
 					Row rowOfGrid = rows[i];
 					rowOfGrid.openSquare(i, col, this);
 				}
@@ -106,6 +103,15 @@ public class Grid {
 			rows[i].openAll();
 		}
 
+	}
+	
+	public int checkGridBoundary(int row) {
+		if(row < 0) {
+			return 0;
+		} else if(row >= getRow()) {
+			return getRow()-1;
+		}
+		return row;
 	}
 
 }

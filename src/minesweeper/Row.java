@@ -71,4 +71,13 @@ public class Row {
 		
 	}
 
+	public Object printConsole() {
+		StringBuilder result = new StringBuilder();
+		for (int j = 0 ; j < getCol(); j++) {
+			result.append(squares[j].printSymbol());
+		}
+		result.append("\n");
+		return result;
+	}
+
 }

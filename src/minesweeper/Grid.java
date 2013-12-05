@@ -95,10 +95,7 @@ public class Grid {
 	public String printConsole() {
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < getRow(); i++) {
-			for (int j = 0; j < getCol(); j++) {
-				result.append(getSquare(i, j).printSymbol());
-			}
-			result.append("\n");
+				result.append(rows[i].printConsole());	
 		}
 		System.out.println(result.toString());
 		return result.toString();

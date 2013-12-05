@@ -59,6 +59,9 @@ class Grid {
 
 	void putMine(Position position) {
 		Square currentSquare = findSquare(position);
+		if (currentSquare.isMine()) {
+			return;
+		}
 		currentSquare.mined();
 		
 		Direction[] directions = Direction.values();

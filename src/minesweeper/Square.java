@@ -29,7 +29,7 @@ class Square {
 		this.mined = true;
 	}
 	
-	boolean hasMine() {
+	boolean isMine() {
 		return this.mined;
 	}
 	

@@ -22,6 +22,6 @@ public class SquareTest {
 	public void mined() throws Exception {
 		Square closed = Square.closedSquare();
 		closed.mined();
-		assertTrue(closed.hasMine());
+		assertTrue(closed.isMine());
 	}
 }

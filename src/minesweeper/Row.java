@@ -15,10 +15,7 @@ public class Row {
 	}
 
 	public void increaseNearNumberOfMine(int col) {
-		int startCol = (col-1 < 0)? col : col-1;
-		int endCol = (col+1 < getCol())? col+1 : col;
-		
-		for (int j = startCol; j <= endCol; j++) {
+		for (int j = checkGridBoundary(col-1); j <= checkGridBoundary(col+1); j++) {
 			squares[j].setNumOfNearMines();
 		}		
 	}

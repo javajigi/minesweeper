@@ -47,13 +47,9 @@ public class Grid {
 	}
 
 	public void putMine(int row, int col) {
-		int startRow = (row - 1 < 0) ? row : row - 1;
-		int endRow = (row + 1 < getRow()) ? row + 1 : row;
-		
 		if(getSquare(row, col).isMine()) return;
-		for (int i = startRow; i <= endRow; i++) {
+		for (int i = checkGridBoundary(row-1); i <= checkGridBoundary(row+1); i++) {
 			Row rowOfGrid = rows[i];
-			
 			rowOfGrid.increaseNearNumberOfMine(col);
 			if (i == row) {
 				rowOfGrid.setMine(col);

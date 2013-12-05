@@ -1,33 +1,13 @@
 package minesweeper;
 
 
-public class GridSize {
-	private int x;
-	private int y;
-
+public class GridSize extends Position {
 	GridSize(int x, int y) {
-		if (x < 1) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		if (y < 1) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		this.x = x;
-		this.y = y;
+		super(x, y);
 	}
 
 	int countOfSquares() {
-		return x * y;
-	}
-	
-	int getX() {
-		return x;
-	}
-	
-	int getY() {
-		return y;
+		return getX() * getY();
 	}
 	
 	/**
@@ -39,44 +19,14 @@ public class GridSize {
 	 * @return
 	 */
 	int indexOfSquare(int i, int j) {
-		if (i > x) {
+		if (i > getX()) {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		if (j > y) {
+		if (j > getY()) {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		return (i -1) * this.y + (j - 1);
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + x;
-		result = prime * result + y;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		GridSize other = (GridSize) obj;
-		if (x != other.x)
-			return false;
-		if (y != other.y)
-			return false;
-		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "Position [x=" + x + ", y=" + y + "]";
+		return (i -1) * this.getY() + (j - 1);
 	}
 }

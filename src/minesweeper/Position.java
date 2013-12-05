@@ -5,8 +5,24 @@ class Position {
 	private int y;
 
 	Position(int x, int y) {
+		if (x < 1) {
+			throw new IndexOutOfBoundsException();
+		}
+		
+		if (y < 1) {
+			throw new IndexOutOfBoundsException();
+		}
+		
 		this.x = x;
 		this.y = y;
+	}
+	
+	int getX() {
+		return x;
+	}
+	
+	int getY() {
+		return y;
 	}
 
 	@Override

@@ -19,16 +19,6 @@ public class GridSizeTest {
 		assertThat(gridSize, is(new GridSize(2, 3)));
 	}
 	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void initWhenIndexOutOfBoundRow() throws Exception {
-		new GridSize(0, 3);
-	}
-	
-	@Test(expected=IndexOutOfBoundsException.class)
-	public void initWhenIndexOutOfBoundColumn() throws Exception {
-		new GridSize(3, 0);
-	}
-	
 	@Test
 	public void countOfSquares() throws Exception {
 		assertThat(gridSize.countOfSquares(), is(6));

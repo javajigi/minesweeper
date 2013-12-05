@@ -7,10 +7,10 @@ class View {
 	String render(Grid grid) {
 		List<Square> squares = grid.getSquares();
 		StringBuilder sb = new StringBuilder();
-		for (int i = 0; i < grid.sizeOfRow(); i++) {
-			for (int j = 0; j < grid.sizeOfColumn(); j++) {
-				int position = getPosition(grid, i, j);
-				Square square = squares.get(position);
+		Position position = grid.sizeOfGrid();
+		for (int i = 1; i <= position.getX(); i++) {
+			for (int j = 1; j <= position.getY(); j++) {
+				Square square = squares.get(position.indexOfSquare(i, j));
 				sb.append(square.getCountOfNeighborMines());
 			}
 			sb.append("\n");
@@ -18,9 +18,4 @@ class View {
 		
 		return sb.toString();
 	}
-
-	static int getPosition(Grid grid, int x, int y) {
-		return x * grid.sizeOfColumn() + y;
-	}
-
 }

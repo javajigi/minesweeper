@@ -6,6 +6,10 @@ import java.util.List;
 class Grid {
 	private List<Square> squares;
 	private Position sizeOfGrid;
+	
+	Grid(int sizeOfRow, int sizeOfColumn) {
+		this(Position.create(sizeOfRow, sizeOfColumn));
+	}
 
 	Grid(Position sizeOfGrid) {
 		this.sizeOfGrid = sizeOfGrid;

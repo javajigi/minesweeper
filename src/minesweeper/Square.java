@@ -19,8 +19,15 @@ class Square {
 		this.opened = true;
 	}
 	
-	public int getCountOfNeighborMines() {
+	int getCountOfNeighborMines() {
 		return 0;
+	}
+	
+	char getSymbol() {
+		if (opened) {
+			return '0';
+		}
+		return 'C';
 	}
 
 	@Override

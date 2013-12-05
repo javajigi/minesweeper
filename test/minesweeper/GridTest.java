@@ -9,8 +9,8 @@ import java.util.List;
 import org.junit.Test;
 
 public class GridTest {
-	static final Grid TWO_BY_THREE = new Grid(Position.create(2, 3));
-	static final Grid THREE_BY_THREE = new Grid(Position.create(3, 3));
+	static final Grid TWO_BY_THREE = new Grid(2, 3);
+	static final Grid THREE_BY_THREE = new Grid(3, 3);
 	
 	@Test
 	public void openSquare() throws Exception {

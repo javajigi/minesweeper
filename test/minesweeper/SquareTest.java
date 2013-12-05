@@ -9,12 +9,19 @@ public class SquareTest {
 	@Test
 	public void getSymbolWhenClosedSquare() throws Exception {
 		Square closed = Square.closedSquare();
-		assertThat(closed.getSymbol(), is('C'));
+		assertThat(closed.getSymbol(), is("C"));
 	}
 	
 	@Test
 	public void getSymbolWhenOpendSquare() throws Exception {
 		Square opened = Square.openedSquare();
-		assertThat(opened.getSymbol(), is('0'));
+		assertThat(opened.getSymbol(), is("0"));
+	}
+	
+	@Test
+	public void mined() throws Exception {
+		Square closed = Square.closedSquare();
+		closed.mined();
+		assertTrue(closed.hasMine());
 	}
 }

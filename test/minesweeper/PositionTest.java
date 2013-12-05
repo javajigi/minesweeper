@@ -1,7 +1,8 @@
 package minesweeper;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
+import minesweeper.Position.Direction;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,5 +28,11 @@ public class PositionTest {
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void initWhenIndexOutOfBoundColumn() throws Exception {
 		new GridSize(3, 0);
+	}
+	
+	@Test
+	public void move() throws Exception {
+		Position actual = position.move(Direction.NORTH);
+		assertThat(actual, is(new Position(2, 4)));
 	}
 }

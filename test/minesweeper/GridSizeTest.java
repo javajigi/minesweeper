@@ -26,20 +26,20 @@ public class GridSizeTest {
 	
 	@Test
 	public void indexOfSquare() throws Exception {
-		assertThat(gridSize.indexOfSquare(1, 1), is(0));
-		assertThat(gridSize.indexOfSquare(1, 2), is(1));
-		assertThat(gridSize.indexOfSquare(2, 1), is(3));
-		assertThat(gridSize.indexOfSquare(2, 3), is(5));
+		assertThat(gridSize.indexOfSquare(new Position(1, 1)), is(0));
+		assertThat(gridSize.indexOfSquare(new Position(1, 2)), is(1));
+		assertThat(gridSize.indexOfSquare(new Position(2, 1)), is(3));
+		assertThat(gridSize.indexOfSquare(new Position(2, 3)), is(5));
 	}
 	
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void indexOfSquareWhenIndexOutOfBoundRow() throws Exception {
-		gridSize.indexOfSquare(3, 2);
+		gridSize.indexOfSquare(new Position(3, 2));
 	}
 	
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void indexOfSquareWhenIndexOutOfBoundColumn() throws Exception {
-		gridSize.indexOfSquare(1, 4);
+		gridSize.indexOfSquare(new Position(1, 4));
 	}
 
 }

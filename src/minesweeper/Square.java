@@ -1,7 +1,9 @@
 package minesweeper;
 
 class Square {
-	private boolean opened;
+	private boolean opened = false;
+	private boolean mined = false;
+	private int countOfNeighborMines = 0;
 
 	private Square(boolean opened) {
 		this.opened = opened;
@@ -19,15 +21,27 @@ class Square {
 		this.opened = true;
 	}
 	
-	int getCountOfNeighborMines() {
-		return 0;
+	void mined() {
+		this.mined = true;
 	}
 	
-	char getSymbol() {
+	boolean hasMine() {
+		return this.mined;
+	}
+	
+	int getCountOfNeighborMines() {
+		return this.countOfNeighborMines;
+	}
+	
+	void increaseCountOfNeighborMines() {
+		this.countOfNeighborMines++;
+	}
+	
+	String getSymbol() {
 		if (opened) {
-			return '0';
+			return this.countOfNeighborMines + "";
 		}
-		return 'C';
+		return "C";
 	}
 
 	@Override

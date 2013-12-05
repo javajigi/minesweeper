@@ -19,14 +19,18 @@ public class GridSize extends Position {
 	 * @return
 	 */
 	int indexOfSquare(int i, int j) {
-		if (i > getX()) {
+		return indexOfSquare(new Position(i, j));
+	}
+
+	int indexOfSquare(Position position) {
+		if (position.getX() > getX()) {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		if (j > getY()) {
+		if (position.getY() > getY()) {
 			throw new IndexOutOfBoundsException();
 		}
 		
-		return (i -1) * this.getY() + (j - 1);
+		return (position.getX() -1) * this.getY() + (position.getY() - 1);
 	}
 }

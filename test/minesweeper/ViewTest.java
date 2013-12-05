@@ -8,7 +8,7 @@ import org.junit.Test;
 public class ViewTest {
 	@Test
 	public void render() throws Exception {
-		View view = new View();
+		ConsoleView view = new ConsoleView();
 		String actual = view.render(new Grid(3, 3));
 		assertThat(actual, is("CCC\nCCC\nCCC\n"));
 	}

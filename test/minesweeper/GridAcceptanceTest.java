@@ -32,7 +32,7 @@ public class GridAcceptanceTest {
 	}
 
 	private String renderView(Grid grid) {
-		return new View().render(grid);
+		return new ConsoleView().render(grid);
 	}
 	
 	@Test

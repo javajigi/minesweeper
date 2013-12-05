@@ -21,6 +21,10 @@ class Square {
 		this.opened = true;
 	}
 	
+	boolean isOpened() {
+		return this.opened;
+	}
+	
 	void mined() {
 		this.mined = true;
 	}
@@ -35,6 +39,10 @@ class Square {
 	
 	void increaseCountOfNeighborMines() {
 		this.countOfNeighborMines++;
+	}
+	
+	boolean hasNotNeighborMine() {
+		return getCountOfNeighborMines() == 0;
 	}
 	
 	String getSymbol() {

@@ -16,14 +16,8 @@ public class GridTest {
 		
 		List<Square> expected = new ArrayList<Square>();
 		for (int i = 1; i <= grid.sizeOfGrid().countOfSquares(); i++) {
-			if (i == 5) {
-				expected.add(Square.openedSquare());
-				continue;
-			}
-			
-			expected.add(Square.closedSquare());
+			expected.add(Square.openedSquare());
 		}
-		
 		assertThat(grid.getSquares(), is(expected));
 	}
 	

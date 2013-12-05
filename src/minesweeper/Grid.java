@@ -27,7 +27,26 @@ class Grid {
 	}
 
 	void openSquare(Position position) {
-		findSquare(position).opened();
+		Square square = findSquare(position);
+		if (square.isOpened()) {
+			return;
+		}
+		square.opened();
+		if (square.hasNotNeighborMine()) {
+			openNeighborSquare(position);
+		}
+	}
+
+	private void openNeighborSquare(Position position) {
+		Direction[] directions = Direction.values();
+		for (Direction each : directions) {
+			try {
+				Position movedPosition = position.move(each);
+				openSquare(movedPosition);
+			} catch (IndexOutOfBoundsException e) {
+				continue;
+			}
+		}
 	}
 
 	List<Square> getSquares() {

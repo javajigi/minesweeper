@@ -5,17 +5,17 @@ import java.util.List;
 
 class Grid {
 	private List<Square> squares;
-	private Position sizeOfGrid;
+	private GridSize sizeOfGrid;
 	
 	Grid(int sizeOfRow, int sizeOfColumn) {
-		this(Position.create(sizeOfRow, sizeOfColumn));
+		this(new GridSize(sizeOfRow, sizeOfColumn));
 	}
 
-	Grid(Position sizeOfGrid) {
+	Grid(GridSize sizeOfGrid) {
 		this.sizeOfGrid = sizeOfGrid;
 		
-		squares = new ArrayList<Square>(sizeOfGrid.getSizeOfGrid());
-		for (int i = 0; i < sizeOfGrid.getSizeOfGrid(); i++) {
+		squares = new ArrayList<Square>(sizeOfGrid.countOfSquares());
+		for (int i = 0; i < sizeOfGrid.countOfSquares(); i++) {
 			squares.add(Square.closedSquare());
 		}
 	}
@@ -30,7 +30,7 @@ class Grid {
 		return squares;
 	}
 	
-	Position sizeOfGrid() {
+	GridSize sizeOfGrid() {
 		return sizeOfGrid;
 	}
 }

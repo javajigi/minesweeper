@@ -15,10 +15,10 @@ public class GridTest {
 	@Test
 	public void openSquare() throws Exception {
 		Grid grid = THREE_BY_THREE;
-		grid.openSquare(Position.create(2, 2));
+		grid.openSquare(new Position(2, 2));
 		
 		List<Square> expected = new ArrayList<Square>();
-		for (int i = 0; i < grid.sizeOfGrid().getSizeOfGrid(); i++) {
+		for (int i = 0; i < grid.sizeOfGrid().countOfSquares(); i++) {
 			expected.add(Square.openedSquare());
 		}
 		

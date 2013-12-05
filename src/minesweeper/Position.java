@@ -1,41 +1,12 @@
 package minesweeper;
 
-
-public class Position {
+class Position {
 	private int x;
 	private int y;
 
-	private Position(int x, int y) {
+	Position(int x, int y) {
 		this.x = x;
 		this.y = y;
-	}
-
-	static Position create(int x, int y) {
-		return new Position(x, y);
-	}
-	
-	int getSizeOfGrid() {
-		return x * y;
-	}
-	
-	int getX() {
-		return x;
-	}
-	
-	int getY() {
-		return y;
-	}
-	
-	/**
-	 * x, y 좌표를 0이 아닌 1부터 시작
-	 * 따라서 배열에서 element 번호에 대한 보정 작업을 한다.
-	 * 
-	 * @param i
-	 * @param j
-	 * @return
-	 */
-	int indexOfSquare(int i, int j) {
-		return (i -1) * this.y + (j - 1);
 	}
 
 	@Override

@@ -1,103 +1,33 @@
 package minesweeper;
 
-public class Square {
-	private boolean mine = false;
-	private boolean open = false;
-	private boolean flag = false;
-	private int neighborMineCount = 0;
-	
-	public Square() {}
-	
-	private Square(boolean open, boolean mine) {
-		this.open = open;
-		this.mine = mine;
+class Square {
+	private boolean opened;
+
+	private Square(boolean opened) {
+		this.opened = opened;
 	}
 
-	private Square(boolean open, int neighborMineCount) {
-		this.open = open;
-		this.neighborMineCount = neighborMineCount;
+	static Square openedSquare() {
+		return new Square(true);
 	}
 
-	public boolean hasMine() {
-		return mine;
-	}
-
-	public boolean isOpen() {
-		return open;
-	}
-
-	public boolean isFlag() {
-		return flag;
-	}
-
-	public void setMine() {
-		this.mine = true;
-	}
-
-	public void setOpen() throws LoseGameException {
-		if (hasMine()) {
-			throw new LoseGameException();
-		}
-		this.open = true;
-	}
-
-	public void setFlag() {
-		this.flag = true;
-		
+	static Square closedSquare() {
+		return new Square(false);
 	}
 	
-	public void setNeighborMineCount(int neighborMineCount) {
-		this.neighborMineCount  = neighborMineCount;
-	}
-
-	public boolean isLose() {
-		return isOpen() && hasMine();
+	void opened() {
+		this.opened = true;
 	}
 	
-	public int getNeighborMineCount() {
-		return neighborMineCount;
-	}
-	
-	public void increaseMineCount() {
-		neighborMineCount++;
-	}
-	
-	public String status() {
-		if (isOpen()) {
-			if (hasMine()) {
-				return "*";
-			}
-			
-			return this.neighborMineCount + "";
-		}
-		
-		if (isFlag()) {
-			return "X";
-		}
-		
-		return ".";
-	}
-	
-	public boolean isNoNeighborMine() {
-		return !hasMine() && (this.neighborMineCount == 0);
-	}
-
-	public static Square createSquareMine() {
-		return new Square(false, true);
-	}
-	
-	public static Square createSquare(int neighborMineCount) {
-		return new Square(false, neighborMineCount);
+	public int getCountOfNeighborMines() {
+		return 0;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (flag ? 1231 : 1237);
-		result = prime * result + (mine ? 1231 : 1237);
-		result = prime * result + neighborMineCount;
-		result = prime * result + (open ? 1231 : 1237);
+		result = prime * result + (opened ? 1231 : 1237);
 		return result;
 	}
 
@@ -110,14 +40,13 @@ public class Square {
 		if (getClass() != obj.getClass())
 			return false;
 		Square other = (Square) obj;
-		if (flag != other.flag)
-			return false;
-		if (mine != other.mine)
-			return false;
-		if (neighborMineCount != other.neighborMineCount)
-			return false;
-		if (open != other.open)
+		if (opened != other.opened)
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Square [opened=" + opened + "]";
 	}
 }

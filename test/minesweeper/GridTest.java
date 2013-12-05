@@ -1,109 +1,26 @@
 package minesweeper;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 public class GridTest {
-	Grid grid;
-
-	@Before
-	public void setUp() {
-		grid = new Grid(2, 2);
-	}
-
 	@Test
-	public void initGrid() {
-		assertEquals(2, grid.getRow());
-		assertEquals(2, grid.getCol());
+	public void openSquare() throws Exception {
+		int sizeOfRow = 3;
+		int sizeOfColumn = 3;
+		Grid grid = new Grid(sizeOfRow, sizeOfColumn);
+		grid.openSquare(2, 2);
 		
-		grid = new Grid(2, 3);
-		assertEquals(2, grid.getRow());
-		assertEquals(3, grid.getCol());
-	}
-
-	@Test
-	public void noMineWin() throws Exception {
-		assertFalse(grid.isWin());
-		grid.openSquare(0, 0);
-		grid.openSquare(0, 1);
-		grid.openSquare(1, 0);
-		grid.openSquare(1, 1);
-		assertTrue(grid.isWin());
-	}
-
-	@Test
-	public void openNoMineSquare() throws Exception {
-		assertEquals(0, grid.getNumberOfMine());
-		grid.putMine(0, 0);
-		assertEquals(1, grid.openSquare(1, 1));
-		grid.putMine(1, 0);
-		assertEquals(2, grid.openSquare(1, 1));
-		grid.putMine(0, 1);
-		assertEquals(3, grid.openSquare(1, 1));
-		grid.putMine(0, 1);
-		assertEquals(3, grid.openSquare(1, 1));
-		grid.putMine(1, 1);
-		assertTrue(grid.isWin());
-	}
-	
-	@Test
-	public void isFlag() throws Exception {
-		assertFalse(grid.isFlag(0, 0));
-		grid.setFlag(0, 0);
-		assertTrue(grid.isFlag(0, 0));
-	}
-	
-	@Test(expected=LoseGameException.class)
-	public void loseGame() throws Exception {
-		grid.putMine(0, 0);
-		grid.openSquare(0, 0);
-	}
-	
-	@Test
-	public void oneByOneWhenNoMine() throws Exception {
-		grid = new Grid(1, 1);
-		assertEquals(".\n", grid.generate());
-		grid.setFlag(0, 0);
-		assertEquals("X\n", grid.generate());
-		grid.openSquare(0, 0);
-		assertEquals("0\n", grid.generate());
-		assertTrue(grid.isWin());
-	}
-	
-	@Test
-	public void oneByOneWhenMine() throws Exception {
-		grid = new Grid(1, 1);
-		grid.putMine(0, 0);
-		assertEquals(".\n", grid.generate());
-		grid.setFlag(0, 0);
-		assertEquals("X\n", grid.generate());
-		assertTrue(grid.isWin());
-	}
-	
-	@Test
-	public void twoByTwoWhenNoMine() throws Exception {
-		grid = new Grid(2, 2);
-		assertEquals("..\n..\n", grid.generate());
-		grid.openSquare(0, 0);
-		assertEquals("00\n00\n", grid.generate());
-	}
-	
-	@Test
-	public void twoByTwoWhenOneMine() throws Exception {
-		grid = new Grid(2, 2);
-		grid.putMine(0, 0);
+		List<Square> expected = new ArrayList<Square>();
+		for (int i = 0; i < sizeOfRow * sizeOfColumn; i++) {
+			expected.add(Square.openedSquare());
+		}
 		
-		grid.openSquare(0, 1);
-		assertEquals(".1\n..\n", grid.generate());
-		
-		grid.openSquare(1, 0);
-		assertEquals(".1\n1.\n", grid.generate());
-
-		grid.openSquare(1, 1);
-		assertEquals(".1\n11\n", grid.generate());
-		
-		assertTrue(grid.isWin());
+		assertThat(grid.getSquares(), is(expected));
 	}
 }

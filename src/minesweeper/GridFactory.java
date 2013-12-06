@@ -1,5 +1,5 @@
 package minesweeper;
 
-interface GridFactory {
+public interface GridFactory {
 	Grid create(GridSize gridSize, int countOfMine);
 }

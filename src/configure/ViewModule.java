@@ -1,4 +1,4 @@
-package support;
+package configure;
 
 import minesweeper.View;
 import minesweeper.view.ConsoleView;

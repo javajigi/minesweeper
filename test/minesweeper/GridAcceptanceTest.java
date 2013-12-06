@@ -9,9 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import configure.ViewModule;
 import support.GuiceJUnitRunner;
 import support.GuiceJUnitRunner.GuiceModules;
-import support.ViewModule;
 
 @RunWith(GuiceJUnitRunner.class)
 @GuiceModules({ ViewModule.class })

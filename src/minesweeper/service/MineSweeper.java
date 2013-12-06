@@ -1,6 +1,12 @@
-package minesweeper.engine;
+package minesweeper.service;
 
 import javax.inject.Inject;
+
+import minesweeper.engine.Grid;
+import minesweeper.engine.GridFactory;
+import minesweeper.engine.GridSize;
+import minesweeper.engine.Position;
+import minesweeper.engine.View;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;

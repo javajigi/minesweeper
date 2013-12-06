@@ -5,7 +5,7 @@ import java.util.List;
 
 
 public class GridSize extends Position {
-	GridSize(int x, int y) {
+	public GridSize(int x, int y) {
 		super(x, y);
 	}
 
@@ -65,7 +65,6 @@ public class GridSize extends Position {
 		int temp = index % getY();
 		int x = (index - temp) / getX() + 1;
 		int y = temp + 1;
-		System.out.println(String.format("x : %d, y : %d", x, y));
 		return new Position(x, y);
 	}
 }

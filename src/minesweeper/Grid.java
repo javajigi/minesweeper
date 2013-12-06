@@ -3,8 +3,6 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
-import minesweeper.Position.Direction;
-
 class Grid {
 	private List<Square> squares;
 	private GridSize sizeOfGrid;
@@ -38,14 +36,9 @@ class Grid {
 	}
 
 	private void openNeighborSquare(Position position) {
-		Direction[] directions = Direction.values();
-		for (Direction each : directions) {
-			try {
-				Position movedPosition = position.move(each);
-				openSquare(movedPosition);
-			} catch (IndexOutOfBoundsException e) {
-				continue;
-			}
+		List<Position> positions = sizeOfGrid.findNeighborPositions(position);
+		for (Position each : positions) {
+			openSquare(each);
 		}
 	}
 
@@ -64,14 +57,9 @@ class Grid {
 		}
 		currentSquare.mined();
 		
-		Direction[] directions = Direction.values();
-		for (Direction each : directions) {
-			try {
-				Position movedPosition = position.move(each);
-				findSquare(movedPosition).increaseCountOfNeighborMines();
-			} catch (IndexOutOfBoundsException e) {
-				continue;
-			}
+		List<Position> positions = sizeOfGrid.findNeighborPositions(position);
+		for (Position each : positions) {
+			findSquare(each).increaseCountOfNeighborMines();
 		}
 	}
 }

@@ -1,5 +1,8 @@
 package minesweeper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class GridSize extends Position {
 	GridSize(int x, int y) {
@@ -23,14 +26,38 @@ public class GridSize extends Position {
 	}
 
 	int indexOfSquare(Position position) {
-		if (position.getX() > getX()) {
-			throw new IndexOutOfBoundsException();
-		}
-		
-		if (position.getY() > getY()) {
+		if (!isValid(position)) {
 			throw new IndexOutOfBoundsException();
 		}
 		
 		return (position.getX() -1) * this.getY() + (position.getY() - 1);
+	}
+
+	List<Position> findNeighborPositions(Position position) {
+		List<Position> neighborPositions = new ArrayList<Position>();
+		Direction[] directions = Direction.values();
+		for (Direction direction : directions) {
+			try {
+				Position movedPosition = position.move(direction);
+				if (isValid(movedPosition)) {
+					neighborPositions.add(movedPosition);
+				}
+			} catch (IndexOutOfBoundsException e) {
+				continue;
+			}
+		}
+		return neighborPositions;
+	}
+
+	boolean isValid(Position position) {
+		if (position.getX() > getX()) {
+			return false;
+		}
+		
+		if (position.getY() > getY()) {
+			return false;
+		}
+		
+		return true;
 	}
 }

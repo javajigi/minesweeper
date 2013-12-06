@@ -60,4 +60,12 @@ public class GridSize extends Position {
 		
 		return true;
 	}
+
+	Position indexToPosition(int index) {
+		int temp = index % getY();
+		int x = (index - temp) / getX() + 1;
+		int y = temp + 1;
+		System.out.println(String.format("x : %d, y : %d", x, y));
+		return new Position(x, y);
+	}
 }

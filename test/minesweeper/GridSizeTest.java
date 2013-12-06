@@ -2,9 +2,7 @@ package minesweeper;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -65,5 +63,13 @@ public class GridSizeTest {
 	public void isInValid() throws Exception {
 		assertFalse(gridSize.isValid(new Position(3, 1)));
 		assertFalse(gridSize.isValid(new Position(2, 4)));
+	}
+	
+	@Test
+	public void indexToPosition() throws Exception {
+		assertThat(gridSize.indexToPosition(0), is(new Position(1, 1)));
+		assertThat(gridSize.indexToPosition(2), is(new Position(1, 3)));
+		assertThat(gridSize.indexToPosition(3), is(new Position(2, 1)));
+		assertThat(gridSize.indexToPosition(5), is(new Position(2, 3)));
 	}
 }

@@ -29,6 +29,7 @@ public class MineSweeper {
 
 	public void start(GridSize gridSize, int countOfMine) {
 		grid = gridFactory.create(gridSize, countOfMine);
+		System.out.println(render());
 	}
 	
 	public static void main(String[] args) {

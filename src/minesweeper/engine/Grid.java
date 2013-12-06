@@ -6,14 +6,11 @@ import java.util.List;
 public class Grid {
 	private List<Square> squares;
 	private GridSize sizeOfGrid;
+	private NeighborSquareFinder neighborSquareFinder;
 	
-	public Grid(int sizeOfRow, int sizeOfColumn) {
-		this(new GridSize(sizeOfRow, sizeOfColumn));
-	}
-
-	public Grid(GridSize sizeOfGrid) {
-		this.sizeOfGrid = sizeOfGrid;
-		
+	public Grid(NeighborSquareFinder neighborSquareFinder, GridSize gridSize) {
+		this.neighborSquareFinder = neighborSquareFinder;
+		this.sizeOfGrid = gridSize;
 		squares = new ArrayList<Square>(sizeOfGrid.countOfSquares());
 		for (int i = 0; i < sizeOfGrid.countOfSquares(); i++) {
 			squares.add(Square.closedSquare());
@@ -36,7 +33,7 @@ public class Grid {
 	}
 
 	private void openNeighborSquare(Position position) {
-		List<Position> positions = sizeOfGrid.findNeighborPositions(position);
+		List<Position> positions = neighborSquareFinder.findNeighborPositions(sizeOfGrid, position);
 		for (Position each : positions) {
 			openSquare(each);
 		}

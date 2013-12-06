@@ -1,21 +1,28 @@
 package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import minesweeper.engine.Grid;
-import minesweeper.engine.Position;
-import minesweeper.engine.Square;
-
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import support.GuiceJUnitRunner;
+import support.GuiceJUnitRunner.GuiceModules;
+import configure.MineSweeperTestModule;
+
+@RunWith(GuiceJUnitRunner.class)
+@GuiceModules({ MineSweeperTestModule.class })
 public class GridTest {
+	public static Grid createBy(GridSize gridSize) {
+		return new Grid(new DefaultNeighborSquareFinder(), gridSize);
+	}
+	
 	@Test
 	public void openSquare() throws Exception {
-		Grid grid = new Grid(3, 3);
+		Grid grid = createBy(new GridSize(3, 3));
 		grid.openSquare(new Position(2, 2));
 		
 		List<Square> expected = new ArrayList<Square>();
@@ -27,7 +34,7 @@ public class GridTest {
 	
 	@Test
 	public void putMine() throws Exception {
-		Grid grid = new Grid(3, 3);
+		Grid grid = createBy(new GridSize(3, 3));
 		grid.putMine(new Position(1, 1));
 		Square oneToTwo = grid.findSquare(new Position(1, 2));
 		assertThat(oneToTwo.getCountOfNeighborMines(), is(1));

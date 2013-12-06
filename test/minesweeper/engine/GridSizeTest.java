@@ -1,13 +1,9 @@
 package minesweeper.engine;
 
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
-
-import java.util.List;
-
-import minesweeper.engine.GridSize;
-import minesweeper.engine.Position;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -46,12 +42,6 @@ public class GridSizeTest {
 	@Test(expected=IndexOutOfBoundsException.class)
 	public void indexOfSquareWhenIndexOutOfBoundColumn() throws Exception {
 		gridSize.indexOfSquare(new Position(1, 4));
-	}
-	
-	@Test
-	public void findNeighborPositions() throws Exception {
-		List<Position> neighborPositions = gridSize.findNeighborPositions(new Position(1, 1));
-		assertThat(neighborPositions, containsInAnyOrder(new Position(1,  2), new Position(2, 1), new Position(2, 2)));
 	}
 	
 	@Test

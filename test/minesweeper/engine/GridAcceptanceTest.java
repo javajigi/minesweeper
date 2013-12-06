@@ -13,7 +13,7 @@ public class GridAcceptanceTest {
 	
 	@Before
 	public void setup() {
-		grid = new Grid(3, 3);
+		grid = GridTest.createBy(new GridSize(3, 3));
 	}
 	
 	@Test
@@ -45,7 +45,7 @@ public class GridAcceptanceTest {
 	
 	@Test
 	public void rendering() throws Exception {
-		grid = new Grid(5, 5);
+		grid = GridTest.createBy(new GridSize(5, 5));
 		grid.putMine(new Position(1, 1));
 		grid.putMine(new Position(2, 2));
 		grid.putMine(new Position(3, 3));

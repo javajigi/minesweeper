@@ -1,9 +1,13 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.inject.Inject;
+
+import minesweeper.engine.Grid;
+import minesweeper.engine.Position;
+import minesweeper.engine.View;
 
 import org.junit.Before;
 import org.junit.Test;

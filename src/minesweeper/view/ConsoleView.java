@@ -2,10 +2,10 @@ package minesweeper.view;
 
 import java.util.List;
 
-import minesweeper.Grid;
-import minesweeper.GridSize;
-import minesweeper.Square;
-import minesweeper.View;
+import minesweeper.engine.Grid;
+import minesweeper.engine.GridSize;
+import minesweeper.engine.Square;
+import minesweeper.engine.View;
 
 public class ConsoleView implements View {
 	public String render(Grid grid) {

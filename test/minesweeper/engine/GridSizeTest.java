@@ -1,10 +1,13 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.*;
 
 import java.util.List;
+
+import minesweeper.engine.GridSize;
+import minesweeper.engine.Position;
 
 import org.junit.Before;
 import org.junit.Test;

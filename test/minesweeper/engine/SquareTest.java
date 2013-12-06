@@ -1,7 +1,8 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
+import minesweeper.engine.Square;
 
 import org.junit.Test;
 

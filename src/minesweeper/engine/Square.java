@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.engine;
 
 public class Square {
 	private boolean opened = false;

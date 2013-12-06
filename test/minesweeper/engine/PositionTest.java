@@ -1,8 +1,10 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import minesweeper.Position.Direction;
+import minesweeper.engine.GridSize;
+import minesweeper.engine.Position;
+import minesweeper.engine.Position.Direction;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,10 +1,14 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import minesweeper.engine.Grid;
+import minesweeper.engine.Position;
+import minesweeper.engine.Square;
 
 import org.junit.Test;
 

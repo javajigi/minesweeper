@@ -1,6 +1,12 @@
-package minesweeper;
+package minesweeper.engine;
 
 import javax.inject.Inject;
+
+import minesweeper.engine.Grid;
+import minesweeper.engine.GridFactory;
+import minesweeper.engine.GridSize;
+import minesweeper.engine.RandomGridFactory;
+import minesweeper.engine.View;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

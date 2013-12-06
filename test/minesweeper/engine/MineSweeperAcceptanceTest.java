@@ -1,9 +1,16 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 import javax.inject.Inject;
+
+import minesweeper.engine.Grid;
+import minesweeper.engine.GridFactory;
+import minesweeper.engine.GridSize;
+import minesweeper.engine.MineSweeper;
+import minesweeper.engine.Position;
+import minesweeper.engine.View;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

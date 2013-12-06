@@ -1,7 +1,7 @@
 package configure;
 
-import minesweeper.GridFactory;
-import minesweeper.RandomGridFactory;
+import minesweeper.engine.GridFactory;
+import minesweeper.engine.RandomGridFactory;
 
 import com.google.inject.AbstractModule;
 

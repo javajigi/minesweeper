@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.engine;
 
 import java.util.List;
 

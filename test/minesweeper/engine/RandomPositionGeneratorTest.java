@@ -1,9 +1,13 @@
-package minesweeper;
+package minesweeper.engine;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import java.util.List;
+
+import minesweeper.engine.GridSize;
+import minesweeper.engine.Position;
+import minesweeper.engine.RandomPositionGenerator;
 
 import org.junit.Test;
 

@@ -2,7 +2,7 @@ package minesweeper.view;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import minesweeper.Grid;
+import minesweeper.engine.Grid;
 
 import org.junit.Test;
 

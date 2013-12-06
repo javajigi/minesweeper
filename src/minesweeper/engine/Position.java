@@ -1,4 +1,4 @@
-package minesweeper;
+package minesweeper.engine;
 
 public class Position {
 	private int x;

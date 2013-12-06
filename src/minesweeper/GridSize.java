@@ -21,7 +21,7 @@ public class GridSize extends Position {
 	 * @param j
 	 * @return
 	 */
-	int indexOfSquare(int i, int j) {
+	public int indexOfSquare(int i, int j) {
 		return indexOfSquare(new Position(i, j));
 	}
 

@@ -1,17 +1,29 @@
 package minesweeper;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import javax.inject.Inject;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import support.GuiceJUnitRunner;
+import support.GuiceJUnitRunner.GuiceModules;
+import support.ViewModule;
+
+@RunWith(GuiceJUnitRunner.class)
+@GuiceModules({ ViewModule.class })
 public class MineSweeperAcceptanceTest {
+	@Inject
+	private View view;
+	
 	@Test
 	public void 지뢰찾기_게임() throws Exception {
 		final int expectedCountOfMine = 2;
 		final GridSize expectedGridSize = new GridSize(3, 3);
 		GridFactory gridFactory = createGridFactory(expectedGridSize, expectedCountOfMine);
-		MineSweeper mineSweeper = new MineSweeper(gridFactory, new ConsoleView());
+		MineSweeper mineSweeper = new MineSweeper(gridFactory, view);
 		mineSweeper.start(expectedGridSize, expectedCountOfMine);
 		mineSweeper.openSquare(new Position(3, 3));
 		String actual = mineSweeper.render();

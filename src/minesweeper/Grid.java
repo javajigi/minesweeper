@@ -3,15 +3,15 @@ package minesweeper;
 import java.util.ArrayList;
 import java.util.List;
 
-class Grid {
+public class Grid {
 	private List<Square> squares;
 	private GridSize sizeOfGrid;
 	
-	Grid(int sizeOfRow, int sizeOfColumn) {
+	public Grid(int sizeOfRow, int sizeOfColumn) {
 		this(new GridSize(sizeOfRow, sizeOfColumn));
 	}
 
-	Grid(GridSize sizeOfGrid) {
+	public Grid(GridSize sizeOfGrid) {
 		this.sizeOfGrid = sizeOfGrid;
 		
 		squares = new ArrayList<Square>(sizeOfGrid.countOfSquares());
@@ -24,7 +24,7 @@ class Grid {
 		return squares.get(sizeOfGrid.indexOfSquare(position));
 	}
 
-	void openSquare(Position position) {
+	public void openSquare(Position position) {
 		Square square = findSquare(position);
 		if (square.isOpened()) {
 			return;
@@ -42,11 +42,11 @@ class Grid {
 		}
 	}
 
-	List<Square> getSquares() {
+	public List<Square> getSquares() {
 		return squares;
 	}
 	
-	GridSize sizeOfGrid() {
+	public GridSize sizeOfGrid() {
 		return sizeOfGrid;
 	}
 

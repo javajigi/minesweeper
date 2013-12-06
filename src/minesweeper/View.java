@@ -1,5 +1,5 @@
 package minesweeper;
 
-interface View {
+public interface View {
 	String render(Grid grid);
 }

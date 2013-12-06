@@ -1,12 +1,24 @@
 package minesweeper;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertThat;
+
+import javax.inject.Inject;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
+import support.GuiceJUnitRunner;
+import support.GuiceJUnitRunner.GuiceModules;
+import support.ViewModule;
+
+@RunWith(GuiceJUnitRunner.class)
+@GuiceModules({ ViewModule.class })
 public class GridAcceptanceTest {
+	@Inject
+	private View view;
+	
 	private Grid grid;
 	
 	@Before
@@ -32,7 +44,7 @@ public class GridAcceptanceTest {
 	}
 
 	private String renderView(Grid grid) {
-		return new ConsoleView().render(grid);
+		return view.render(grid);
 	}
 	
 	@Test

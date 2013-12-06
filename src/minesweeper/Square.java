@@ -1,6 +1,6 @@
 package minesweeper;
 
-class Square {
+public class Square {
 	private boolean opened = false;
 	private boolean mined = false;
 	private int countOfNeighborMines = 0;
@@ -45,7 +45,7 @@ class Square {
 		return getCountOfNeighborMines() == 0;
 	}
 	
-	String getSymbol() {
+	public String getSymbol() {
 		if (opened) {
 			return this.countOfNeighborMines + "";
 		}

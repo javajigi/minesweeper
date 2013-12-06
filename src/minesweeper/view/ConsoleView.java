@@ -1,8 +1,13 @@
-package minesweeper;
+package minesweeper.view;
 
 import java.util.List;
 
-class ConsoleView implements View {
+import minesweeper.Grid;
+import minesweeper.GridSize;
+import minesweeper.Square;
+import minesweeper.View;
+
+public class ConsoleView implements View {
 	public String render(Grid grid) {
 		List<Square> squares = grid.getSquares();
 		StringBuilder sb = new StringBuilder();
@@ -17,5 +22,4 @@ class ConsoleView implements View {
 		
 		return sb.toString();
 	}
-	
 }

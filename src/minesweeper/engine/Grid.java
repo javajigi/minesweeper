@@ -21,7 +21,7 @@ public class Grid {
 		return squares.get(sizeOfGrid.indexOfSquare(position));
 	}
 
-	public void openSquare(Position position) {
+	public void openSquare(Position position) throws GameOverException {
 		Square square = findSquare(position);
 		if (square.isOpened()) {
 			return;
@@ -32,7 +32,7 @@ public class Grid {
 		}
 	}
 
-	private void openNeighborSquare(Position position) {
+	private void openNeighborSquare(Position position) throws GameOverException {
 		List<Position> positions = neighborSquareFinder.findNeighborPositions(sizeOfGrid, position);
 		for (Position each : positions) {
 			openSquare(each);

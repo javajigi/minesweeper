@@ -17,7 +17,10 @@ public class Square {
 		return new Square(false);
 	}
 	
-	void opened() {
+	void opened() throws GameOverException {
+		if (mined) {
+			throw new GameOverException();
+		}
 		this.opened = true;
 	}
 	

@@ -25,4 +25,11 @@ public class SquareTest {
 		closed.mined();
 		assertTrue(closed.isMine());
 	}
+	
+	@Test (expected=GameOverException.class)
+	public void openedWhenMinedSquare() throws Exception {
+		Square square = Square.closedSquare();
+		square.mined();
+		square.opened();
+	}
 }

@@ -32,7 +32,6 @@ class RandomPositionGenerator {
 			values.add(i);
 		}
 		Collections.shuffle(values);
-		System.out.println(values);
 		return values;
 	}
 

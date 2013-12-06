@@ -3,26 +3,12 @@ package minesweeper.engine;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
-import javax.inject.Inject;
-
-import minesweeper.engine.Grid;
-import minesweeper.engine.Position;
-import minesweeper.engine.View;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-import configure.ViewModule;
-import support.GuiceJUnitRunner;
-import support.GuiceJUnitRunner.GuiceModules;
-
-@RunWith(GuiceJUnitRunner.class)
-@GuiceModules({ ViewModule.class })
 public class GridAcceptanceTest {
-	@Inject
-	private View view;
-	
 	private Grid grid;
 	
 	@Before
@@ -48,7 +34,7 @@ public class GridAcceptanceTest {
 	}
 
 	private String renderView(Grid grid) {
-		return view.render(grid);
+		return render(grid);
 	}
 	
 	@Test
@@ -70,4 +56,19 @@ public class GridAcceptanceTest {
 		System.out.println(result);
 	}
 
+	private String render(Grid grid) {
+		List<Square> squares = grid.getSquares();
+		StringBuilder sb = new StringBuilder();
+		GridSize gridSize = grid.sizeOfGrid();
+		
+		for (int i = 1; i <= gridSize.getX(); i++) {
+			for (int j = 1; j <= gridSize.getY(); j++) {
+				Square square = squares.get(gridSize.indexOfSquare(i, j));
+				sb.append(square.getSymbol());
+			}
+			sb.append("\n");
+		}
+		
+		return sb.toString();
+	}
 }

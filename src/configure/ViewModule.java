@@ -1,7 +1,7 @@
 package configure;
 
-import minesweeper.engine.View;
 import minesweeper.view.ConsoleView;
+import minesweeper.view.View;
 
 import com.google.inject.AbstractModule;
 

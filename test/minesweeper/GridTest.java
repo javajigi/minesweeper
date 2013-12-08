@@ -70,18 +70,6 @@ public class GridTest {
 		grid.openSquare(1, 1);
 		assertTrue(grid.isGameOver());
 	}
-
-	@Test
-	public void openNoMineSquare() throws Exception {
-		assertEquals(0, grid.getNumberOfMine());
-		grid.putMine(0, 0);
-		assertEquals(1, grid.openSquare(1, 1));
-		grid.putMine(1, 0);
-		assertEquals(2, grid.openSquare(1, 1));
-		grid.putMine(0, 1);
-		assertEquals(3, grid.openSquare(1, 1));
-		grid.putMine(1, 1);
-	}
 	
 	@Test
 	public void isFlag() throws Exception {

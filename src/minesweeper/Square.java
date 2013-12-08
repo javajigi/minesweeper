@@ -66,4 +66,13 @@ public class Square {
 		return false;
 	}
 
+	public boolean isGameOver() {
+		if(isMine() && !isOpen()) {
+			return true;
+		} else if (!isMine() && isOpen()) {
+			return true;
+		}
+		return false;
+	}
+
 }

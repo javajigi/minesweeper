@@ -28,20 +28,8 @@ public class Grid {
 	}
 
 	public boolean isGameOver() {
-		if (numberOfMine == getRow() * getCol()) {
-			return true;
-		}
-
-		if (isAllOpen()) {
-			return true;
-		}
-		return false;
-	}
-
-	private boolean isAllOpen() {
 		for (int i = 0; i < getRow(); i++) {
-			Row row = rows[i];
-			if (!row.isAllOpen()) {
+			if(!rows[i].isGameOver()) {
 				return false;
 			}
 		}
@@ -58,6 +46,7 @@ public class Grid {
 				rowOfGrid.setMine(col);
 			}
 		}
+		numberOfMine++;
 	}
 
 	public int openSquare(int row, int col) throws GameoverException {

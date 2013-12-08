@@ -62,12 +62,20 @@ public class GridTest {
 	}
 	
 	@Test
-	public void noMineWin() throws Exception {
+	public void caseOfWin() throws Exception {
 		assertFalse(grid.isGameOver());
 		grid.openSquare(0, 0);
 		grid.openSquare(0, 1);
 		grid.openSquare(1, 0);
 		grid.openSquare(1, 1);
+		assertTrue(grid.isGameOver());
+		
+		grid = new Grid(2,2);
+		assertFalse(grid.isGameOver());
+		grid.putMine(1, 1);
+		grid.openSquare(0, 0);
+		grid.openSquare(0, 1);
+		grid.openSquare(1, 0);
 		assertTrue(grid.isGameOver());
 	}
 	
@@ -139,6 +147,7 @@ public class GridTest {
 		}
 		
 		assertEquals(mines, count);
+		assertEquals(grid5by5.getNumberOfMine(), count);
 		grid5by5.openAll();
 		grid5by5.printConsole();
 	}

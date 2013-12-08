@@ -83,4 +83,13 @@ public class Row {
 		return col;
 	}
 
+	public boolean isGameOver() {
+		for (int j = 0 ; j < getCol(); j++) {
+			if(!squares[j].isGameOver()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

@@ -147,7 +147,7 @@ public class GridTest {
 		}
 		
 		assertEquals(mines, count);
-		assertEquals(grid5by5.getNumberOfMine(), count);
+		assertEquals(grid5by5.getTotalNumberOfMine(), count);
 		grid5by5.openAll();
 		grid5by5.printConsole();
 	}

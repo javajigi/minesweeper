@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Grid {
 
-	private int numberOfMine = 0;
+	private int totalNumberOfMine = 0;
 
 	private Row rows[];
 
@@ -23,8 +23,8 @@ public class Grid {
 		return rows[0].getCol();
 	}
 
-	public int getNumberOfMine() {
-		return numberOfMine;
+	public int getTotalNumberOfMine() {
+		return totalNumberOfMine;
 	}
 
 	public boolean isGameOver() {
@@ -46,7 +46,7 @@ public class Grid {
 				rowOfGrid.setMine(col);
 			}
 		}
-		numberOfMine++;
+		totalNumberOfMine++;
 	}
 
 	public int openSquare(int row, int col) throws GameoverException {

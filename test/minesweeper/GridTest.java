@@ -135,5 +135,24 @@ public class GridTest {
 		assertEquals("CC100\nCC100\n11100\n00000\n00000\n", grid5by5.printConsole());
 	}
 	
+	@Test
+	public void setRandomMine() throws Exception {
+		grid5by5 = new Grid(5,5);
+		int mines = 5;
+		int count = 0;
+		Square sq = new Square();
+		grid5by5.setRandomMine(mines);
+		
+		for(int i = 0 ; i < grid5by5.getRow() ; i++) {
+			for(int j = 0 ; j < grid5by5.getCol() ; j++) {
+				sq = grid5by5.getSquare(i, j);
+				if (sq.isMine()) count++;
+			}
+		}
+		
+		assertEquals(mines, count);
+		grid5by5.openAll();
+		grid5by5.printConsole();
+	}
 	
 }

@@ -1,5 +1,7 @@
 package minesweeper;
 
+import java.util.Random;
+
 public class Grid {
 
 	private int numberOfMine = 0;
@@ -47,8 +49,9 @@ public class Grid {
 	}
 
 	public void putMine(int row, int col) {
-		if(getSquare(row, col).isMine()) return;
-		for (int i = checkGridBoundary(row-1); i <= checkGridBoundary(row+1); i++) {
+		if (getSquare(row, col).isMine())
+			return;
+		for (int i = checkGridBoundary(row - 1); i <= checkGridBoundary(row + 1); i++) {
 			Row rowOfGrid = rows[i];
 			rowOfGrid.increaseNearNumberOfMine(col);
 			if (i == row) {
@@ -61,13 +64,13 @@ public class Grid {
 		Square square = getSquare(row, col);
 		square.setOpen();
 		if (!square.isMine()) {
-			if (square.hasNotNearMine()){
-				for (int i = checkGridBoundary(row-1); i <= checkGridBoundary(row+1); i++) {
+			if (square.hasNotNearMine()) {
+				for (int i = checkGridBoundary(row - 1); i <= checkGridBoundary(row + 1); i++) {
 					Row rowOfGrid = rows[i];
 					rowOfGrid.openSquare(i, col, this);
 				}
 			}
-			
+
 			return square.getNumOfNearMines();
 		}
 		throw new GameoverException();
@@ -88,7 +91,7 @@ public class Grid {
 	public String printConsole() {
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < getRow(); i++) {
-				result.append(rows[i].printConsole());	
+			result.append(rows[i].printConsole());
 		}
 		System.out.println(result.toString());
 		return result.toString();
@@ -100,14 +103,31 @@ public class Grid {
 		}
 
 	}
-	
+
 	public int checkGridBoundary(int row) {
-		if(row < 0) {
+		if (row < 0) {
 			return 0;
-		} else if(row >= getRow()) {
-			return getRow()-1;
+		} else if (row >= getRow()) {
+			return getRow() - 1;
 		}
 		return row;
+	}
+
+	public void setRandomMine(int numberOfMine) {
+		Random intRandom = new Random();
+		int row, col;
+
+		for (int i = 0; i < numberOfMine; i++) {
+			row = intRandom.nextInt(getRow());
+			col = intRandom.nextInt(getCol());
+			if(!getSquare(row, col).isMine()) {
+				putMine(row, col);
+			} else {
+				i--;
+			}
+			
+		}
+
 	}
 
 }

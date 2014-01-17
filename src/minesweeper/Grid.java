@@ -7,11 +7,72 @@ public class Grid {
 	private Row rows[];
 
 	public Grid(int row, int col) {
-		rows = new Row[row];
+		rows = new Row[row+1];
 		for (int i = 0; i < row; i++) {
-			rows[i] = new Row(col);
+			rows[i] = new Row(col+1);
+		}
+		setDummy();
+	}
+	
+	/////////////////////////////////
+	public void setDummy(){
+		int rowLength = getRow();
+		for (int i = 0; i< rowLength ; i++){
+			if (i == 0 || i == rowLength){
+				rows[i].setAllColsDummy();
+			}
+			else{
+				rows[i].setDummy();
+			}
 		}
 	}
+	
+	public void putMine2(int row, int col){
+		rows[row].putMine2(col);
+		if (!rows[row].isMine(col)){
+			increaseNearNumber(row, col);			
+		}
+	}
+
+	private void increaseNearNumber(int row, int col) {
+		rows[row+1].increaseNearNumber(col);
+		rows[row].increaseNearNumber(col);
+		rows[row+1].increaseNearNumber(col);		
+	}
+	
+	public void openSquare2(int row, int col){
+		char result = rows[row].openSquare2(col);
+		if (result == 'm'){
+			//지뢰다(게임오버 ) 
+			//프린트 
+		}
+		else{//지뢰가 아니라면 
+			if (result == 'n'){
+				//프린트 
+			}
+			else{
+				continueDownOpen(row, col);
+				continueUpOpen(row, col);
+			}
+		}
+	}
+	
+	private void continueUpOpen(int row, int col) {
+		char result = rows[row].continueOpen(col);
+		if (result == 'Y'){
+			continueUpOpen(row-1, col);
+		}
+	}
+	private void continueDownOpen(int row, int col) {
+		char result = rows[row].continueOpen(col);
+		if (result == 'Y'){
+			continueUpOpen(row+1, col);
+		}
+		
+		
+	}
+
+	/////////////////////////////////
 
 	public int getRow() {
 		return rows.length;
@@ -100,7 +161,6 @@ public class Grid {
 			}
 			result.append("\n");
 		}
-		System.out.println(result.toString());
 		return result.toString();
 	}
 
@@ -108,7 +168,6 @@ public class Grid {
 		for (int i = 0; i < getRow(); i++) {
 			rows[i].openAll();
 		}
-
 	}
 
 }

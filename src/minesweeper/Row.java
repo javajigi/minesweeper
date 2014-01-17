@@ -71,4 +71,62 @@ public class Row {
 		
 	}
 
+	/////////////////////////////////
+	public void setAllColsDummy() {
+		int colLength = getCol();
+		for (int i = 0; i < colLength ; i++){
+			squares[i].setDummy();
+		}
+		
+	}
+
+	public void setDummy() {
+		int colLength = getCol();
+		squares[0].setDummy();
+		squares[colLength].setDummy();
+		
+	}
+	public void putMine2(int col) {
+		squares[col].putMine2();
+		
+	}
+
+
+	public boolean isMine(int col) {
+		return squares[col].isMine();
+	}
+
+	public void increaseNearNumber(int col) {
+		squares[col].increaseNearNumber();
+		squares[col+1].increaseNearNumber();
+		squares[col-1].increaseNearNumber();
+		
+	}
+	/////////////////////////////////
+
+	public char openSquare2(int col) {
+		return squares[col].openSquare2();
+	}
+
+	public char continueOpen(int col) {
+		char result = squares[col].continueOpen();
+		continueLeftOpen(col-1);
+		continueRightOpen(col+1);
+		return result;
+	}
+	
+	private void continueLeftOpen(int col) {
+		char result = squares[col].continueOpen();
+		if (result == 'Y'){
+			continueLeftOpen(col-1);
+		}
+	}
+	
+	private void continueRightOpen(int col) {
+		char result = squares[col].continueOpen();
+		if (result == 'Y'){
+			continueLeftOpen(col+1);
+		}
+	}
+
 }

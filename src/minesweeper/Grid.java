@@ -47,18 +47,15 @@ public class Grid {
 	}
 
 	public void putMine(int row, int col) {
-		int startRow = (row - 1 < 0) ? row : row - 1;
-		int endRow = (row + 1 < getRow()) ? row + 1 : row;
+		Position pos = new Position(row, col);
 		
-		if(getSquare(row, col).isMine()) return;
-		for (int i = startRow; i <= endRow; i++) {
-			Row rowOfGrid = rows[i];
-			
-			rowOfGrid.increaseNearNumberOfMine(col);
-			if (i == row) {
-				rowOfGrid.setMine(col);
-			}
+		if(getSquare(pos).isMine()) return;
+		
+		getSquare(pos).setMine();
+		for (Position eachPos : pos.getNeighbors(getRow(), getCol())) {
+			getSquare(eachPos).setNumOfNearMines();
 		}
+		
 	}
 
 	public int openSquare(int row, int col) throws GameoverException {

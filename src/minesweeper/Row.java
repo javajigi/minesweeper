@@ -14,15 +14,6 @@ public class Row {
 		return squares.length;
 	}
 
-	public void increaseNearNumberOfMine(int col) {
-		int startCol = (col-1 < 0)? col : col-1;
-		int endCol = (col+1 < getCol())? col+1 : col;
-		
-		for (int j = startCol; j <= endCol; j++) {
-			squares[j].setNumOfNearMines();
-		}		
-	}
-
 	public void setMine(int col) {
 		squares[col].setMine();
 	}

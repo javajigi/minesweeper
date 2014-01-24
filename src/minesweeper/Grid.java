@@ -83,13 +83,21 @@ public class Grid {
 	public Square getSquare(int row, int col) {
 		return rows[row].getSquare(col);
 	}
-
+	
+	public Square getSquare(Position pos) {
+		return rows[pos.getX()].getSquare(pos.getY());
+	}
+	
 	public boolean isFlag(int i, int j) {
-		return getSquare(i, j).isFlag();
+		Position pos = new Position(i, j);
+		
+		return getSquare(pos).isFlag();
 	}
 
 	public void setFlag(int i, int j) {
-		getSquare(i, j).setFlag();
+		Position pos = new Position(i, j);
+		
+		getSquare(pos).setFlag();
 	}
 
 	public String printConsole() {

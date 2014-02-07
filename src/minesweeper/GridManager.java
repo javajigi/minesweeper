@@ -7,7 +7,7 @@ public class GridManager {
 	private Grid grid;
 
 	public GridManager(int row, int col) {
-		grid = new Grid(row, col);
+		grid = new NormalGrid(row, col);
 	}
 
 	public int getRow() {
@@ -34,7 +34,7 @@ public class GridManager {
 	}
 
 	public void putMine(int row, int col) {
-		Position pos = new Position(row, col);
+		Position pos = createPosition(row, col);
 		
 		if(getSquare(pos).isMine()) return;
 		getSquare(pos).setMine();
@@ -44,8 +44,12 @@ public class GridManager {
 		
 	}
 
+	private Position createPosition(int row, int col) {
+		return grid.createPosition(row, col);
+	}
+
 	public void openSquare(int row, int col) throws GameoverException {
-		Position pos = new Position(row, col);
+		Position pos = createPosition(row, col);
 		Square square = getSquare(pos);
 		
 		if (square.isMine()) {
@@ -75,14 +79,13 @@ public class GridManager {
 	}
 	
 	public boolean isFlag(int i, int j) {
-		Position pos = new Position(i, j);
+		Position pos = createPosition(i, j);
 		
 		return getSquare(pos).isFlag();
 	}
 
 	public void setFlag(int i, int j) {
-		Position pos = new Position(i, j);
-		
+		Position pos = createPosition(i, j);
 		getSquare(pos).setFlag();
 	}
 

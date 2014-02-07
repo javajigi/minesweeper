@@ -1,41 +1,17 @@
 package minesweeper;
 
-public class Grid {
+public interface Grid {
 
-	private Row rows[];
+	public abstract int getRow();
 
-	public Grid(int row, int col) {
-		rows = new Row[row];
-		for (int i = 0; i < row; i++) {
-			rows[i] = new Row(col);
-		}
-	}
+	public abstract int getCol();
 
-	public int getRow() {
-		return rows.length;
-	}
+	public abstract Square getSquare(int row, int col);
 
-	public int getCol() {
-		return rows[0].getCol();
-	}
+	public abstract boolean isAllOpen();
 
-	public Square getSquare(int row, int col) {
-		return rows[row].getSquare(col);
-	}
+	public abstract void openAll();
 	
-	public boolean isAllOpen() {
-		for (int i = 0; i < getRow(); i++) {
-			Row row = rows[i];
-			if (!row.isAllOpen()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	public void openAll() {
-		for (int i = 0; i < getRow(); i++) {
-			rows[i].openAll();
-		}
-	}
+	public Position createPosition(int x, int y);
+
 }

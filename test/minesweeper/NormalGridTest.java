@@ -5,14 +5,14 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GridTest {
+public class NormalGridTest {
 	int row = 2;
 	int column = 2;
 	private Grid grid;
 
 	@Before
 	public void setup() {
-		grid = new Grid(row, column);
+		grid = new NormalGrid(row, column);
 	}
 	
 	

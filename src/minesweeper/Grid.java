@@ -50,7 +50,6 @@ public class Grid {
 		Position pos = new Position(row, col);
 		
 		if(getSquare(pos).isMine()) return;
-		
 		getSquare(pos).setMine();
 		for (Position eachPos : pos.getNeighbors(getRow(), getCol())) {
 			getSquare(eachPos).setNumOfNearMines();
@@ -58,23 +57,26 @@ public class Grid {
 		
 	}
 
-	public int openSquare(int row, int col) throws GameoverException {
-		Square square = getSquare(row, col);
-		square.setOpen();
-		if (!square.isMine()) {
-			int startRow = (row - 1 < 0) ? row : row - 1;
-			int endRow = (row + 1 < getRow()) ? row + 1 : row;
-
-			if (square.getNumOfNearMines() == 0){
-				for (int i = startRow; i <= endRow; i++) {
-					Row rowOfGrid = rows[i];
-					rowOfGrid.openSquare(i, col, this);
-				}
-			}
-			
-			return square.getNumOfNearMines();
+	public void openSquare(int row, int col) throws GameoverException {
+		Position pos = new Position(row, col);
+		Square square = getSquare(pos);
+		
+		if (square.isMine()) {
+			throw new GameoverException();
 		}
-		throw new GameoverException();
+		
+		square.setOpen();
+		
+		if(square.getNumOfNearMines() != 0) {
+			return ;
+		}
+	
+		for (Position eachPos :  pos.getNeighbors(getRow(), getCol())) {
+			Square eachSquare = getSquare(eachPos);
+			if(!eachSquare.isOpen()) {
+				openSquare(eachPos.getX(), eachPos.getY());
+			}
+		}	
 	}
 
 	public Square getSquare(int row, int col) {

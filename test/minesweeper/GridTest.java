@@ -75,11 +75,12 @@ public class GridTest {
 	public void openNoMineSquare() throws Exception {
 		assertEquals(0, grid.getNumberOfMine());
 		grid.putMine(0, 0);
-		assertEquals(1, grid.openSquare(1, 1));
+		grid.openSquare(1, 1);
+		assertEquals(1, grid.getSquare(1,1).getNumOfNearMines());
 		grid.putMine(1, 0);
-		assertEquals(2, grid.openSquare(1, 1));
+		assertEquals(2, grid.getSquare(1,1).getNumOfNearMines());
 		grid.putMine(0, 1);
-		assertEquals(3, grid.openSquare(1, 1));
+		assertEquals(3, grid.getSquare(1,1).getNumOfNearMines());
 		grid.putMine(1, 1);
 	}
 	
@@ -105,17 +106,19 @@ public class GridTest {
 	@Test
 	public void grid3by3() throws Exception {
 		//2,2오픈 0, 4, 8
-		assertEquals(0, grid3by3.openSquare(1, 1));
+		grid3by3.openSquare(1, 1);
+		
+		assertEquals(0, grid3by3.getSquare(1,1).getNumOfNearMines());
 		grid3by3.putMine(0, 0);
 		grid3by3.putMine(0, 1);
 		grid3by3.putMine(0, 2);
 		grid3by3.putMine(1, 0);
-		assertEquals(4, grid3by3.openSquare(1, 1));
+		assertEquals(4, grid3by3.getSquare(1,1).getNumOfNearMines());
 		grid3by3.putMine(1, 2);
 		grid3by3.putMine(2, 0);
 		grid3by3.putMine(2, 1);
 		grid3by3.putMine(2, 2);
-		assertEquals(8, grid3by3.openSquare(1, 1));
+		assertEquals(8, grid3by3.getSquare(1,1).getNumOfNearMines());
 	}
 	
 	@Test

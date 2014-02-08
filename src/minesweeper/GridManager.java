@@ -31,10 +31,23 @@ public class GridManager {
 			return true;
 		}
 
-		if (grid.isAllOpen()) {
+		if (isAllOpen()) {
 			return true;
 		}
 		return false;
+	}
+	
+	public boolean isAllOpen() {
+		for (int i = 0; i < getRow(); i++) {
+			for (int j = 0; j < getCol(); j++) {
+				Position pos = createPosition(i, j);
+				Square square = getSquare(pos);
+				if (!square.isOpen()) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 
 	public void putMine(int row, int col) {

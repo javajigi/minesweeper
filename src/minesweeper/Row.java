@@ -22,15 +22,6 @@ public class Row {
 		return squares[col];
 	}
 
-	public boolean isLose() {
-		for (int j = 0; j < getCol(); j++) {
-			if (getSquare(j).isLose()) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	public boolean isAllOpen() {
 		for (int j = 0; j < getCol(); j++) {
 			if (!getSquare(j).isOpen()) {

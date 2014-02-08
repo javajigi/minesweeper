@@ -36,20 +36,6 @@ public class NormalGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
-	 * @see minesweeper.Grid#isAllOpen()
-	 */
-	@Override
-	public boolean isAllOpen() {
-		for (int i = 0; i < getRow(); i++) {
-			Row row = rows[i];
-			if (!row.isAllOpen()) {
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	/* (non-Javadoc)
 	 * @see minesweeper.Grid#openAll()
 	 */
 	@Override

@@ -30,17 +30,6 @@ public class DummyGrid implements Grid {
 	}
 
 	@Override
-	public boolean isAllOpen() {
-		for (int i = 0; i < getRow(); i++) {
-			Row row = rows[i+1];
-			if (!row.isAllOpen()) {
-				return false;
-			}
-		}
-		return true;
-	}
-
-	@Override
 	public void openAll() {
 		for (int i = 0; i < getRow(); i++) {
 			rows[i+1].openAll();

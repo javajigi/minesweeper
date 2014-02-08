@@ -12,7 +12,7 @@ public class NormalGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see minesweeper.IGrid#getRow()
+	 * @see minesweeper.Grid#getRow()
 	 */
 	@Override
 	public int getRow() {
@@ -20,7 +20,7 @@ public class NormalGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see minesweeper.IGrid#getCol()
+	 * @see minesweeper.Grid#getCol()
 	 */
 	@Override
 	public int getCol() {
@@ -28,7 +28,7 @@ public class NormalGrid implements Grid {
 	}
 
 	/* (non-Javadoc)
-	 * @see minesweeper.IGrid#getSquare(int, int)
+	 * @see minesweeper.Grid#getSquare(int, int)
 	 */
 	@Override
 	public Square getSquare(int row, int col) {
@@ -36,7 +36,7 @@ public class NormalGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
-	 * @see minesweeper.IGrid#isAllOpen()
+	 * @see minesweeper.Grid#isAllOpen()
 	 */
 	@Override
 	public boolean isAllOpen() {
@@ -50,7 +50,7 @@ public class NormalGrid implements Grid {
 	}
 	
 	/* (non-Javadoc)
-	 * @see minesweeper.IGrid#openAll()
+	 * @see minesweeper.Grid#openAll()
 	 */
 	@Override
 	public void openAll() {
@@ -61,6 +61,6 @@ public class NormalGrid implements Grid {
 
 	@Override
 	public Position createPosition(int x, int y) {
-		return new Position(x, y);
+		return new NormalPosition(x, y);
 	}
 }

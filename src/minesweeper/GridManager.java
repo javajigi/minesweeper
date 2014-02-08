@@ -7,7 +7,11 @@ public class GridManager {
 	private Grid grid;
 
 	public GridManager(int row, int col) {
-		grid = new NormalGrid(row, col);
+		grid = new DummyGrid(row, col);
+	}
+	
+	private Position createPosition(int row, int col) {
+		return grid.createPosition(row, col);
 	}
 
 	public int getRow() {
@@ -43,11 +47,7 @@ public class GridManager {
 		}
 		
 	}
-
-	private Position createPosition(int row, int col) {
-		return grid.createPosition(row, col);
-	}
-
+	
 	public void openSquare(int row, int col) throws GameoverException {
 		Position pos = createPosition(row, col);
 		Square square = getSquare(pos);

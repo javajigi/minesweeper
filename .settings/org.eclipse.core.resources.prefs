@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/dummy/DummyGrid.java=UTF-8
+encoding//src/dummy/DummyPosition.java=UTF-8
+encoding//test/minesweeper/DummyGridManagerTest.java=UTF-8
+encoding//test/minesweeper/NormalGridManagerTest.java=UTF-8

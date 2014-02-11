@@ -1,5 +1,4 @@
 package dummy;
-import normal.NormalPosition;
 import minesweeper.Grid;
 import minesweeper.Position;
 import minesweeper.Row;
@@ -14,8 +13,8 @@ public class DummyGrid implements Grid{
 				
 		rows = new Row[rowPlusDummy];
 		for ( int i = 0; i < rowPlusDummy; i++){
-			rows[i] = new Row(col);
-			if (i == 0 || i == rowPlusDummy-1){
+			rows[i] = new Row(colPlusDummy);
+			if (i == 0 || i == rowPlusDummy -1 ){
 				rows[i].setAllDummy();
 			}
 			else{
@@ -25,17 +24,17 @@ public class DummyGrid implements Grid{
 	}
 
 	@Override
-	public int getRow() {
-		return rows.length;
+	public int getRow() { //normal과 달리 더미노드 때문에 양 옆을 -2
+		return rows.length - 2;
 	}
 
 	@Override
-	public int getCol() {
-		return rows[0].getCol();
+	public int getCol() {  //normal과 달리 더미노드 때문에 위 아래를 -2
+		return rows[0].getCol() - 2;
 	}
 
 	@Override
-	public Square getSquare(int row, int col) {
+	public Square getSquare(int row, int col) { //더미노드 때문에 row와 col을 각각 +1
 		int dummyRow = row+1;
 		int dummyCol = col+1;
 		return rows[dummyRow].getSquare(dummyCol);
@@ -43,7 +42,7 @@ public class DummyGrid implements Grid{
 
 	@Override
 	public boolean isAllOpen() {
-		for (int i = 0; i < getRow(); i++) {
+		for (int i = 1; i <= getRow(); i++) {
 			Row row = rows[i];
 			if (!row.isAllOpen()) {
 				return false;
@@ -54,7 +53,7 @@ public class DummyGrid implements Grid{
 
 	@Override
 	public void openAll() {
-		for (int i = 0; i < getRow(); i++) {
+		for (int i = 1; i <= getRow(); i++) {
 			rows[i].openAll();
 		}
 		

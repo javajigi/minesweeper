@@ -92,7 +92,6 @@ public class Square {
 	}
 
 	public void setDummy() {
-		this.open = true;
 		this.dummy = true;
 	}
 

@@ -5,16 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GridManagerTest {
+public class NormalGridManagerTest {
+	final static String NORMAL = "normal";
+	
 	GridManager grid;
 	GridManager grid3by3;
 	GridManager grid5by5;
 
 	@Before
 	public void setUp() {
-		grid = new GridManager(2, 2);
-		grid3by3 = new GridManager(3,3);
-		grid5by5 = new GridManager(5,5);
+		grid = new GridManager(2, 2, NORMAL);
+		grid3by3 = new GridManager(3,3, NORMAL);
+		grid5by5 = new GridManager(5,5, NORMAL);
 	}
 
 	@Test
@@ -22,14 +24,14 @@ public class GridManagerTest {
 		assertEquals(2, grid.getRow());
 		assertEquals(2, grid.getCol());
 		
-		grid = new GridManager(2, 3);
+		grid = new GridManager(2, 3, NORMAL);
 		assertEquals(2, grid.getRow());
 		assertEquals(3, grid.getCol());
 	}
 
 	@Test
 	public void oneByOnePrint() throws Exception {
-		grid = new GridManager(1, 1);
+		grid = new GridManager(1, 1, NORMAL);
 		assertEquals("C\n", grid.printConsole());
 		grid.setFlag(0, 0);
 		assertEquals("F\n", grid.printConsole());
@@ -37,7 +39,7 @@ public class GridManagerTest {
 	
 	@Test
 	public void twoByTwoPrint() throws Exception {
-		grid = new GridManager(2, 2);
+		grid = new GridManager(2, 2, NORMAL);
 		assertEquals("CC\nCC\n", grid.printConsole());
 		
 		grid.setFlag(0, 0);
@@ -52,7 +54,7 @@ public class GridManagerTest {
 	
 	@Test
 	public void numberOfMine() throws Exception {
-		grid = new GridManager(2, 2);
+		grid = new GridManager(2, 2, NORMAL);
 		grid.putMine(0, 0);
 		
 		grid.openSquare(1, 1);
@@ -94,7 +96,6 @@ public class GridManagerTest {
 	@Test
 	public void gameOver() {
 		grid.putMine(0, 0);
-		grid.putMine(0, 0);
 		try {
 			grid.openSquare(0, 0);
 		} catch (GameoverException e) {
@@ -105,7 +106,6 @@ public class GridManagerTest {
 	
 	@Test
 	public void grid3by3() throws Exception {
-		//2,2오픈 0, 4, 8
 		grid3by3.openSquare(1, 1);
 		
 		assertEquals(0, grid3by3.getSquare(1,1).getNumOfNearMines());
@@ -126,7 +126,7 @@ public class GridManagerTest {
 		grid3by3.openSquare(1, 1);
 		assertEquals("000\n000\n000\n", grid3by3.printConsole());
 		
-		grid3by3 = new GridManager(3, 3);
+		grid3by3 = new GridManager(3, 3, NORMAL);
 		grid3by3.putMine(0, 0);
 		grid3by3.openSquare(1, 1);
 		assertEquals("CCC\nC1C\nCCC\n", grid3by3.printConsole());

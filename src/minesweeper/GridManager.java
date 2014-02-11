@@ -1,15 +1,19 @@
 package minesweeper;
 
+import dummy.DummyGrid;
 import normal.NormalGrid;
 
 public class GridManager {
 
+	final static String DUMMY = "dummy"; 
+	final static String NORMAL = "normal";
+	
 	private int numberOfMine = 0;
-
 	private Grid grid;
 
-	public GridManager(int row, int col) {
-		grid = new NormalGrid(row, col);
+	public GridManager(int row, int col, String type) {
+		if (type == NORMAL) grid = new NormalGrid(row, col);
+		if (type == DUMMY) grid = new DummyGrid(row, col);
 	}
 
 	public int getRow() {
@@ -53,14 +57,14 @@ public class GridManager {
 	public void openSquare(int row, int col) throws GameoverException {
 		Position pos = createPosition(row, col);
 		Square square = getSquare(pos);
-		
+
 		if (square.isMine()) {
 			throw new GameoverException();
 		}
 		
 		square.setOpen();
 		
-		if(square.getNumOfNearMines() != 0) {
+		if(square.getNumOfNearMines() != 0 || square.isDummy()) {
 			return ;
 		}
 	
@@ -95,7 +99,8 @@ public class GridManager {
 		StringBuilder result = new StringBuilder();
 		for (int i = 0; i < getRow(); i++) {
 			for (int j = 0; j < getCol(); j++) {
-				result.append(getSquare(i, j).printSymbol());
+				Position pos = createPosition(i, j);
+				result.append(getSquare(pos).printSymbol());
 			}
 			result.append("\n");
 		}

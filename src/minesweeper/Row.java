@@ -55,6 +55,6 @@ public class Row {
 
 	public void setDummy() {
 		squares[0].setDummy();
-		squares[getCol()].setDummy();
+		squares[getCol()-1].setDummy();
 	}
 }

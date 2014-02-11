@@ -45,6 +45,16 @@ public class Row {
 		for (int j = 0; j < getCol(); j++) {
 			squares[j].setOpen();
 		}
-		
+	}
+
+	public void setAllDummy() {
+		for ( int i = 0 ; i < getCol() ; i++){
+			squares[i].setDummy();
+		}
+	}
+
+	public void setDummy() {
+		squares[0].setDummy();
+		squares[getCol()].setDummy();
 	}
 }

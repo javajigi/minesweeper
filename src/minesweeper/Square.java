@@ -4,6 +4,7 @@ public class Square {
 	private boolean mine = false;
 	private boolean open = false;
 	private boolean flag = false;
+	private boolean dummy = false;
 	private int numOfNearMines = 0;
 
 	public boolean isMine() {
@@ -88,6 +89,15 @@ public class Square {
 		if (open != other.open)
 			return false;
 		return true;
+	}
+
+	public void setDummy() {
+		this.open = true;
+		this.dummy = true;
+	}
+
+	public boolean isDummy() {
+		return this.dummy;
 	}
 
 	

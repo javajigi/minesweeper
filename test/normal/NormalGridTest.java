@@ -1,6 +1,8 @@
-package minesweeper;
+package normal;
 
 import static org.junit.Assert.assertEquals;
+import minesweeper.Grid;
+import minesweeper.Square;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,7 @@
 package minesweeper;
 
+import normal.NormalGrid;
+
 public class GridManager {
 
 	private int numberOfMine = 0;

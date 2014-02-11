@@ -2,11 +2,13 @@ package minesweeper;
 
 import dummy.DummyGrid;
 import normal.NormalGrid;
+import list.ListGrid;
 
 public class GridManager {
 
-	final static String DUMMY = "dummy"; 
 	final static String NORMAL = "normal";
+	final static String DUMMY = "dummy"; 
+	final static String LIST = "list";
 	
 	private int numberOfMine = 0;
 	private Grid grid;
@@ -14,6 +16,7 @@ public class GridManager {
 	public GridManager(int row, int col, String type) {
 		if (type == NORMAL) grid = new NormalGrid(row, col);
 		if (type == DUMMY) grid = new DummyGrid(row, col);
+		if (type == LIST) grid = new ListGrid(row, col);
 	}
 
 	public int getRow() {
@@ -30,18 +33,21 @@ public class GridManager {
 
 	public boolean isGameOver() {
 		if (numberOfMine == getRow() * getCol()) {
+			System.out.println("f");
 			return true;
 		}
 
 		if (grid.isAllOpen()) {
+			System.out.println("u");
 			return true;
 		}
+		System.out.println("fc");
 		return false;
 	}
 
 	public void putMine(int row, int col) {
 		Position pos = createPosition(row, col);
-		
+		System.out.println(pos.getX());
 		if(getSquare(pos).isMine()) return;
 		getSquare(pos).setMine();
 		for (Position eachPos : pos.getNeighbors(getRow(), getCol())) {

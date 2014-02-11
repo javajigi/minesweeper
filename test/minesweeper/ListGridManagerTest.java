@@ -5,8 +5,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DummyGridManagerTest {
-	final static String DUMMY = "dummy"; 
+public class ListGridManagerTest {
+	final static String LIST = "list"; 
 	
 	GridManager grid;
 	GridManager grid3by3;
@@ -14,9 +14,9 @@ public class DummyGridManagerTest {
 
 	@Before
 	public void setUp() {
-		grid = new GridManager(2, 2, DUMMY);
-		grid3by3 = new GridManager(3,3, DUMMY);
-		grid5by5 = new GridManager(5,5, DUMMY);
+		grid = new GridManager(2, 2, LIST);
+		grid3by3 = new GridManager(3,3, LIST);
+		grid5by5 = new GridManager(5,5, LIST);
 	}
 
 	@Test
@@ -24,14 +24,14 @@ public class DummyGridManagerTest {
 		assertEquals(2, grid.getRow());
 		assertEquals(2, grid.getCol());
 		
-		grid = new GridManager(2, 3, DUMMY);
+		grid = new GridManager(2, 3, LIST);
 		assertEquals(2, grid.getRow());
 		assertEquals(3, grid.getCol());
 	}
 
 	@Test
 	public void oneByOnePrint() throws Exception {
-		grid = new GridManager(1, 1, DUMMY);
+		grid = new GridManager(1, 1, LIST);
 		assertEquals("C\n", grid.printConsole());
 		grid.setFlag(0, 0);
 		assertEquals("F\n", grid.printConsole());
@@ -39,7 +39,7 @@ public class DummyGridManagerTest {
 	
 	@Test
 	public void twoByTwoPrint() throws Exception {
-		grid = new GridManager(2, 2, DUMMY);
+		grid = new GridManager(2, 2, LIST);
 		assertEquals("CC\nCC\n", grid.printConsole());
 		
 		grid.setFlag(0, 0);
@@ -48,13 +48,15 @@ public class DummyGridManagerTest {
 		grid.openSquare(0, 1);
 		assertEquals("00\n00\n", grid.printConsole());
 		
+		System.out.println("kkkkkkkkk");
+		
 		grid.putMine(1, 1);
 		assertEquals("11\n1M\n", grid.printConsole());
 	}
 	
 	@Test
 	public void numberOfMine() throws Exception {
-		grid = new GridManager(2, 2, DUMMY);
+		grid = new GridManager(2, 2, LIST);
 		grid.putMine(0, 0);
 		
 		grid.openSquare(1, 1);
@@ -126,7 +128,7 @@ public class DummyGridManagerTest {
 		grid3by3.openSquare(1, 1);
 		assertEquals("000\n000\n000\n", grid3by3.printConsole());
 		
-		grid3by3 = new GridManager(3, 3, DUMMY);
+		grid3by3 = new GridManager(3, 3, LIST);
 		grid3by3.putMine(0, 0);
 		grid3by3.openSquare(1, 1);
 		assertEquals("CCC\nC1C\nCCC\n", grid3by3.printConsole());

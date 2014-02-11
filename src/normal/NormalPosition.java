@@ -30,7 +30,7 @@ public class NormalPosition implements Position{
 		int startCol = (y-1 < 0)? y : y-1;
 		int endCol = (y+1 < col)? y+1 : y;
 		
-		ArrayList<Position> neighbors = new ArrayList<>();
+		ArrayList<Position> neighbors = new ArrayList<Position>();
 		
 		for (int i = startRow; i <= endRow; i++) {
 			for (int j = startCol; j <= endCol; j++) {
@@ -39,6 +39,10 @@ public class NormalPosition implements Position{
 		}
 		
 		neighbors.remove(this);
+		for (int i = 0 ; i < neighbors.size();i++){
+			System.out.println(neighbors.get(i).getX());
+			System.out.println(neighbors.get(i).getY());
+		}
 		return neighbors;
 	}
 

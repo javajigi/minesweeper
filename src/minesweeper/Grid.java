@@ -1,6 +1,5 @@
 package minesweeper;
 
-import normal.NormalPosition;
 
 public interface Grid {
 

@@ -2,8 +2,6 @@ package minesweeper;
 
 import java.util.ArrayList;
 
-import normal.NormalPosition;
-
 public interface Position {
 	
 	public abstract int getX();

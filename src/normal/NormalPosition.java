@@ -39,10 +39,6 @@ public class NormalPosition implements Position{
 		}
 		
 		neighbors.remove(this);
-		for (int i = 0 ; i < neighbors.size();i++){
-			System.out.println(neighbors.get(i).getX());
-			System.out.println(neighbors.get(i).getY());
-		}
 		return neighbors;
 	}
 

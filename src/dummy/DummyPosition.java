@@ -1,6 +1,7 @@
 package dummy;
 
 import java.util.ArrayList;
+
 import minesweeper.Position;
 
 public class DummyPosition implements Position {

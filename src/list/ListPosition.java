@@ -40,7 +40,6 @@ public class ListPosition implements Position{
 			}
 		}
 		neighbors.remove(this);
-		
 		return neighbors;
 	}
 

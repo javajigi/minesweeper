@@ -48,8 +48,6 @@ public class ListGridManagerTest {
 		grid.openSquare(0, 1);
 		assertEquals("00\n00\n", grid.printConsole());
 		
-		System.out.println("kkkkkkkkk");
-		
 		grid.putMine(1, 1);
 		assertEquals("11\n1M\n", grid.printConsole());
 	}

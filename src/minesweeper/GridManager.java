@@ -33,21 +33,17 @@ public class GridManager {
 
 	public boolean isGameOver() {
 		if (numberOfMine == getRow() * getCol()) {
-			System.out.println("f");
 			return true;
 		}
 
 		if (grid.isAllOpen()) {
-			System.out.println("u");
 			return true;
 		}
-		System.out.println("fc");
 		return false;
 	}
 
 	public void putMine(int row, int col) {
 		Position pos = createPosition(row, col);
-		System.out.println(pos.getX());
 		if(getSquare(pos).isMine()) return;
 		getSquare(pos).setMine();
 		for (Position eachPos : pos.getNeighbors(getRow(), getCol())) {
@@ -110,7 +106,6 @@ public class GridManager {
 			}
 			result.append("\n");
 		}
-		System.out.println(result.toString());
 		return result.toString();
 	}
 

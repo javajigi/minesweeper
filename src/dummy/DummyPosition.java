@@ -24,7 +24,7 @@ public class DummyPosition implements Position {
 	
 	@Override
 	public ArrayList<Position> getNeighbors(int row, int col) {
-		//Dummy는 row, col에 상관없이 자신의 +1, -1 총 9가지의 list를 가짐 
+		//Dummy는 row, col에 상관없이 자신의 +1, -1 총 9가지의 list를 가진다 
 		int startRow = this.x-1;
 		int startCol = this.y-1;
 		int endRow = this.x+1;

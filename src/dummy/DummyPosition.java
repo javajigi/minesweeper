@@ -30,7 +30,7 @@ public class DummyPosition implements Position {
 		int endRow = this.x+1;
 		int endCol = this.y+1;
 		
-		ArrayList<Position> neighbors = new ArrayList<>();
+		ArrayList<Position> neighbors = new ArrayList<Position>();
 
 		for (int i = startRow ; i <= endRow; i++){
 			for (int j = startCol; j <= endCol ; j++){

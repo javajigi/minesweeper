@@ -1,9 +1,5 @@
-package normal;
+package minesweeper;
 
-import minesweeper.Grid;
-import minesweeper.Position;
-import minesweeper.Row;
-import minesweeper.Square;
 
 public class NormalGrid implements Grid {
 

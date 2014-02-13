@@ -1,7 +1,6 @@
 package minesweeper;
 
 import dummy.DummyGrid;
-import normal.NormalGrid;
 import list.ListGrid;
 
 public class GridManager {

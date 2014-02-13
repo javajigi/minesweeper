@@ -7,7 +7,7 @@ public class GridManager {
 	private Grid grid;
 
 	public GridManager(int row, int col) {
-		grid = new DummyGrid(row, col);
+		grid = new ListGrid(row, col);
 	}
 	
 	private Position createPosition(int row, int col) {

@@ -12,35 +12,38 @@ public class ListGrid implements Grid  {
 		this.col = col;
 		this.lenght = row*col;
 		
+		square = new Square[lenght];
+		
+		for(int i=0 ; i<lenght ; i++) {
+			square[i] = new Square();
+		}
 	}
 	@Override
 	public int getRow() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.row;
 	}
 
 	@Override
 	public int getCol() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.col;
 	}
 
 	@Override
 	public Square getSquare(int row, int col) {
-		// TODO Auto-generated method stub
-		return null;
+		int index = row*this.col + col;
+		return square[index];
 	}
 
 	@Override
 	public void openAll() {
-		// TODO Auto-generated method stub
-		
+		for(int i=0 ; i<lenght ; i++){
+			square[i].setOpen();
+		}
 	}
 
 	@Override
 	public Position createPosition(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ListPosition(x, y);
 	}
 
 }

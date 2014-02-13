@@ -3,6 +3,7 @@ package minesweeper;
 import java.util.ArrayList;
 
 public class DummyPosition implements Position {
+	
 	private int x;
 	private int y;
 	
